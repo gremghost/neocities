@@ -8,8 +8,132 @@
          If you include the next line in all your web pages, they will all share the same look.
          This makes it easier to make new pages for your site. -->
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  <style>
+
+  #blogwindow {
+    z-index:11;
+  }
+  #closebutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 507px;
+  }
+  #minbutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 473px;
+  }  
+
+  #mydiv {
+    position: absolute;
+    z-index: 9;
+  }
+  #paragraph {
+    position: absolute;
+    display: none;
+    z-index: 11;
+    top: 28px;
+    left: 8px;
+    font-family: "Fixedsys Excelsior 3.01";
+  }
+  
+  #mydivheader {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }
+
+  .hidden {
+    display: none;
+  }  
+  </style>
   </head>
   <body>
-    <p>test</p>
+
+  <!--blog windows-->
+  <div id="mydiv" class="hidden">
+    <div id="mydivheader">
+      <p id="paragraph" class="hidden">test</p>      
+      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow()">        
+      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow()">      
+      <img id="blogwindow" src="images/blog/22025_notext.png">
+    </div>
+  </div>    
+
+<!--code for dragging windows-->
+<script>
+dragElement(document.getElementById("mydiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+function dragMouseDown(e) {
+  e = e || window.event;
+  e.preventDefault();
+  // get the mouse cursor position at startup:
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+  document.onmouseup = closeDragElement;
+  // call a function whenever the cursor moves:
+  document.onmousemove = elementDrag;
+  }
+
+function elementDrag(e) {
+  e = e || window.event;
+  // calculate the new cursor position:
+  pos1 = pos3 - e.clientX;
+  pos2 = pos4 - e.clientY;
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+  // set the element's new position:
+  elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+  elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+}
+
+function closeDragElement() {
+  // stop moving when mouse button is released:
+  document.onmouseup = null;
+  document.onmousemove = null;
+  }
+}        
+</script>
+
+<!--code for revealing / hiding windows & buttons-->
+<script>
+
+function closeButtonImageChange() {
+  if (event.target == (document.getElementById("closebutton"))){
+      document.getElementById("closebutton").src = "images/blog/close_click.png";
+      console.log("button was clicked")
+
+  setTimeout(function(){
+      document.getElementById("closebutton").src = "images/blog/close.png";
+      console.log("button was reset")
+
+    }, 75);
+  }
+}
+
+function hideWindow() {
+  let ele = document.getElementById("paragraph");
+
+  if (ele.style.display === "block"){
+    ele.style.display = "none";
+  } else {
+    ele.style.display = "block";
+  }
+} 
+</script>
   </body>
 </html>
