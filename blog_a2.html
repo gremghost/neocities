@@ -9,6 +9,14 @@
          This makes it easier to make new pages for your site. -->
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
   <style>
+    
+  .hidden {
+    display: none;
+  }
+  
+  .clickable {
+    cursor: pointer
+  }
 
   #blogwindow {
     z-index:11;
@@ -46,18 +54,16 @@
     padding: 0px;
     z-index: 10;
   }
-
-  .hidden {
-    display: none;
-  }  
   </style>
   </head>
-  <body>
+  <body style="background-color: #008080;">
 
-  <!--blog windows-->
+  <img class="clickable" src="images/blog/desktop icons/22025.png" onclick="hideWindow()">
+
+  <!--windows-->
   <div id="mydiv" class="hidden">
     <div id="mydivheader">
-      <p id="paragraph" class="hidden">test</p>      
+      <p id="paragraph">test</p>      
       <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow()">        
       <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow()">      
       <img id="blogwindow" src="images/blog/22025_notext.png">
@@ -125,15 +131,41 @@ function closeButtonImageChange() {
   }
 }
 
+function minButtonImageChange() {
+  if (event.target == (document.getElementById("minbutton"))){
+      document.getElementById("minbutton").src = "images/blog/minimize_click.png";
+      console.log("button 2 was clicked")
+
+  setTimeout(function(){
+      document.getElementById("minbutton").src = "images/blog/minimize.png";
+      console.log("button 2 was reset")
+      
+      }, 75);
+    }
+  }
+
 function hideWindow() {
   let ele = document.getElementById("paragraph");
 
   if (ele.style.display === "block"){
     ele.style.display = "none";
+    console.log("can't see - paragraph")
   } else {
     ele.style.display = "block";
+    console.log("can see - paragraph")
   }
-} 
+}
+
+let test = document.getElementsByClassName("hidden");
+  for (var i = 0; i < test.length; i ++) {
+    if (test[i].style.display == "none"){
+      test[i].style.display = "block"
+      console.log("can see - window")
+    } else {
+      test[i].style.display = "none"
+      console.log("can't see - window")
+  }
+}       
 </script>
   </body>
 </html>
