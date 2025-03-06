@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The web site of gremghost</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+        <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+  <style>
+      .clickable {
+    cursor: pointer;   
+    }    
+  #image {
+    display: none;
+  }  
+  #blogwindow {
+    z-index:11;
+  }
+  #closebutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 507px;
+
+  }
+  #minbutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 473px;
+
+  }  
+  #mydiv {
+    position: absolute;
+    z-index: 9;
+  }
+  #uh {
+    position: absolute;
+    display: none;
+    z-index: 11;
+    top: 28px;
+    left: 8px;
+    font-family: "Fixedsys Excelsior 3.01";
+  }
+  
+  #mydivheader {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }
+
+  .hidden {
+    display: none;
+  }
+  </style>
+  </head>
+  <body style="background-color: aqua;">
+  
+  <p style="font-family: 'MS Sans Serif 1'; font-size:8px"><b>2/20/25 - Notepad</b></p>
+  
+    <img class="clickable" src="images/blog/startbutton.jpg" onclick="show()">
+    
+    <img id="image" src="images/blog/startmenu.jpg">
+
+    <img class="clickable" src="images/blog/mycomputer.png" onclick="hideWindow()">
+  <div id="mydiv" class="hidden">
+    <div id="mydivheader">
+      <p id="uh" class="hidden">test</p>      
+      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow()">        
+      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow()">      
+      <img id="blogwindow" src="images/blog/22025_notext.png">
+    </div>
+  </div>
+
+    <script>
+    function show() {
+      /* Access image by id and change 
+      the display property to block*/
+      document.getElementById('image')
+      .style.display = "block";
+    }
+
+    function closeButtonImageChange() {
+      if (event.target == (document.getElementById("closebutton"))){
+        document.getElementById("closebutton").src = "images/blog/close_click.png";
+        console.log("button was clicked")
+
+      setTimeout(function(){
+        document.getElementById("closebutton").src = "images/blog/close.png";
+        console.log("button was reset")
+
+      }, 75);
+      }
+    }
+    function hideWindow() {
+      let ele = document.getElementById("uh");
+
+      if (ele.style.display === "block"){
+        ele.style.display = "none";
+      } else {
+        ele.style.display = "block";
+      }
+
+    let test = document.getElementsByClassName("hidden");
+      for (var i = 0; i < test.length; i ++) {
+        if (test[i].style.display == "block"){
+          test[i].style.display = "none"
+          console.log("can't see")
+        } else {
+          test[i].style.display = "block"
+          console.log("can see")
+          break;
+        }
+      }
+    }       
+dragElement(document.getElementById("mydiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}        
+    </script>
+    
+    <span id="hitcount"></span>
+    <script>
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var site_data = JSON.parse(this.responseText);
+          var num_arr = site_data.info.views.toString().split("");
+          var num_str = "";
+          for (i = 0; i < num_arr.length; i++) {
+           num_str += `<img src="gifs/counter/c` + num_arr[i] + `.gif"/>`;
+           if ( (num_arr.length-1 - i) % 3 == 0 && (num_arr.length-1 - i) != 0 ) {num_str += ",";}
+          }
+          document.getElementById("hitcount").innerHTML = num_str;
+        }
+      };
+      xhttp.open("GET", "https://weirdscifi.ratiosemper.com/neocities.php?sitename=gremghost", true);
+      xhttp.send();
+    </script>
+    
+    <script>
+    function minButtonImageChange() {
+      if (event.target == (document.getElementById("minbutton"))){
+        document.getElementById("minbutton").src = "images/blog/minimize_click.png";
+        console.log("button 2 was clicked")
+
+      setTimeout(function(){
+        document.getElementById("minbutton").src = "images/blog/minimize.png";
+        console.log("button 2 was reset")
+      
+      }, 75);
+      }
+    }
+    
+    function myFunction() {
+    const blogwindows = [
+        "https://pixabay.com/p-848904/?no_redirect",
+        "http://www.pruebas.pieldetoro.net/web/MERCEDES/DOSSIERES/w115/8-1.jpg",
+        "https://pixabay.com/p-1203738/?no_redirect",
+        "https://cdn.pixabay.com/photo/2015/11/13/13/45/vw-beetle-1042002_960_720.jpg"
+    ];
+}
+    var index = document.getElementById('win').selectedIndex;
+    document.getElementById('img1').src = pictures[index];
+    </script>
+  </body>
+</html>

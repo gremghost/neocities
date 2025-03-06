@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogdows 98 Second Edition</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    
+    
+  <style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;    
+      float: left;
+    }
+    /* Solid border */
+    hr.solid {
+      border-top: 2px solid white;
+    }
+    p {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 30px;
+    }
+    body {
+        cursor:url('images/blog/cursor.png'), default;
+    }    
+    h1 {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 30px;
+    }
+    #startbutton {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:2px;
+    z-index:1;
+    }
+    #mycomputer {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left:4px;
+    z-index:0;
+    }    
+    #blogbutton1 {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:69px;
+    z-index:1;
+    }
+    #blogbutton2 {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:232px;
+    z-index:1;
+    }
+    #blogbutton3 {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:395px;
+    z-index:1;
+    }
+    #blogbutton4 {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:558px;
+    z-index:1;
+    }            
+    div {
+    width:100%;
+    position: absolute;
+    bottom:0;
+    z-index:2;
+    }    
+    .font1 {
+    font-family: "Fixedsys Excelsior 3.01" 
+    display: none;
+    }
+    #contextmenu {    
+    display: none;
+    position: absolute;
+    left: 30px;
+    top: 17px;
+    z-index: 4;
+    }
+    #aboutme1 {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    left: 32px;
+    top : 162px;
+    z-index:4;
+    }
+    #aboutme2 {
+    display: none;
+    position: absolute;
+    left: 69px;
+    top : 63px;
+    z-index:0;
+    }
+    #cookie {
+    display: none;
+    position: absolute;
+    left: 300px;
+    top : 370px;
+    z-index:0;
+    width:100px;
+    }    
+    #okbutton {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    left: 314px;
+    top : 478px;
+    z-index:0;
+    }        
+    #image {
+    cursor: pointer;       
+    display: none;
+    position: absolute;
+    bottom: 23px;
+    left: 26px;
+    z-index: 4;
+    }
+    #image2 { 
+    display: none; 
+    position: absolute;
+    bottom: 20px;
+    left: 2px;
+    z-index: 3;
+    }
+
+    #blogwindow1 {
+    z-index:11;
+  }
+    
+    #closebutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 507px;
+    }
+
+    #minbutton {
+    position: absolute;
+    cursor: pointer;
+    z-index:12;
+    top: 6px;
+    left: 473px;
+    }  
+
+    #desktop { 
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    }
+    #checklist { 
+    position: absolute;
+    z-index: -1;
+    left: 815px
+    }    
+    #mydiv {
+    position: absolute;
+    z-index: 9;
+    }    
+    #mydivheader {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+    }    
+    #taskbar {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    }
+
+    #testing {
+        cursor: pointer
+    }
+ 
+    .hidden {
+    display: none;
+    } 
+</style>
+  </head>
+<!--DID YOU FUCKING FORGET () AGAIN??? WHAT ABOUT ;?????-->
+  <body style="background-color:#008080">
+
+  <audio autoplay>
+  <source src="https://files.catbox.moe/4aaf10.mp3" type="audio/mpeg">
+  </audio>
+
+  <img id="testing" src="images/backgrounds/americanbg.png" onclick="hideWindow()">
+
+  <img id="contextmenu" src=images/blog/contextmenu.png">
+  <img id="aboutme1" src="images/blog/aboutme.png" onclick=aboutMeShow()>
+  <img id="aboutme2" src="images/blog/aboutmewindow.png">
+  <img id="okbutton" src="images/blog/ok.png" onclick="ok()">  
+  <img id="cookie" src="images/blog/cookieflshnew.gif">   
+  
+  <img id="desktop" src="images/blog/desktopicons.png">
+  <img id="mycomputer" src="images/blog/mycomputer.png" onclick="myComputer(); contextMenu()">  
+ 
+<!--blog entries go here-->
+<div id="mydiv" class="hidden">
+    <div id="mydivheader">
+        <img id="blogwindow1" src="images/blog/22025_notext.png">
+        <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow()">        
+        <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow()">      
+    </div>
+</div>
+
+  
+  <img id="image" src="images/blog/neocities.jpg" onclick="location.href='https://gremghost.neocities.org';">
+  <img id="image2" src="images/blog/startmenu.jpg">
+  
+  <p id="checklist" style="font-family: 'Fixedsys Excelsior 3.01'; font-size:'11px'"><u>things that still need to be added:</u><br>text blogs rather than images<br>remove the bugs<br>make the blogs upper-left buttons work<br>proper adjustments between windows when moved<br>drag and drop window functionality</p>
+  
+  <div>
+    <img id="blogbutton1" src="images/blog/22025button.png" onclick="taskBarButton1(); blog1()">
+    <img id="blogbutton2" src="images/blog/22325button.png" onclick="taskBarButton2(); blog2()">
+    <img id="blogbutton3" src="images/blog/22425button.png" onclick="taskBarButton3(); blog3()">
+    <img id="blogbutton4" src="images/blog/22525button.png" onclick="taskBarButton4(); blog4()">     
+    <img id="startbutton" src="images/blog/startbutton.jpg" onclick="startMenu(); changeImage()">
+    <img id="taskbar" src="images/blog/startbar2.png">
+  </div>
+  
+
+<script>
+        let containingElement = document.querySelector('#aboutme2');
+                
+        document.body.addEventListener('click', function(event){
+        	if( containingElement.contains(event.target) ){
+        		document.getElementById("aboutme2").src = "images/blog/aboutmewindow.png";
+        	} else {
+        		document.getElementById("aboutme2").src = "images/blog/aboutmewindow_inactive.png";
+        	}
+        });        
+
+        function show() {
+            /* Access image by id and change 
+            the display property to block*/
+            document.getElementById('image')
+                .style.display = "block";
+            document.getElementById('image2')
+                .style.display = "block";               
+        }
+        function handleOutsideClick(element, callback) {
+          document.addEventListener('click', function(event) {
+            if (!element.contains(event.target)) {
+              callback();
+            }
+          });
+        }
+        
+        const myElement = document.getElementById('startbutton');
+        const myElement2 = document.getElementById('mycomputer');
+        const myElement3 = document.getElementById('aboutme2');        
+        
+        handleOutsideClick(myElement, function() {
+          console.log('Clicked outside the element');
+          if (document.getElementById("image2").style.display == "block"){
+              document.getElementById("image2").style.display = "none";
+          } else {
+              document.getElementById("image2").style.display - "block";
+          }
+          
+          if (document.getElementById("image").style.display == "block"){
+              document.getElementById("image").style.display = "none";
+          } else {
+              document.getElementById("image").style.display - "block";
+          }
+          
+          if (document.getElementById("startbutton").src == "images/blog/startbutton_open.jpg"){
+              document.getElementById("startbutton").src = "images/blog/startbutton.jpg";
+          }
+        });
+        
+        handleOutsideClick(myElement2, function() {
+          console.log('Clicked outside the element again');
+          if (document.getElementById("contextmenu").style.display == "block"){
+              document.getElementById("contextmenu").style.display = "none";
+          } else {
+              document.getElementById("contextmenu").style.display - "block";
+          }
+          
+          if (document.getElementById('aboutme1').style.display == "block"){
+              document.getElementById('aboutme1').style.display = "none";
+          }
+            
+          if (document.getElementById("mycomputer").src == "images/blog/mycomputer_select.png"){
+              document.getElementById("mycomputer").src = "images/blog/mycomputer.png";
+          }
+        });        
+        
+        handleOutsideClick(myElement3, function() {
+          console.log('Clicked outside the element again again');
+          if (document.getElementById("aboutme2").src == "images/blog/aboutmewindow.png"){
+              document.getElementById("aboutme2").src = "images/blog/aboutmewindow_inactive.png";
+          } else {
+             document.getElementById("aboutme2").src = "images/blog/aboutmewindow.png";
+          }
+        });                
+
+    function closeButtonImageChange() {
+      if (event.target == (document.getElementById("closebutton"))){
+        document.getElementById("closebutton").src = "images/blog/close_click.png";
+        console.log("button was clicked")
+
+      setTimeout(function(){
+        document.getElementById("closebutton").src = "images/blog/close.png";
+        console.log("button was reset")
+
+      }, 75);
+      }
+    }
+
+    function hideWindow() {
+
+    let test = document.getElementsByClassName("hidden");
+      for (var i = 0; i < test.length; i ++) {
+        if (test[i].style.display == "block"){
+          test[i].style.display = "none"
+          console.log("can't see")
+        } else {
+          test[i].style.display = "block"
+          console.log("can see")
+          break;
+        }
+      }
+    } 
+        function aboutMeShow() {
+          if (document.getElementById("aboutme2").style.display == "block"){
+              document.getElementById("aboutme2").style.display = "none";
+          } else {    
+              document.getElementById("aboutme2").style.display = "block";
+          }
+          if (document.getElementById("okbutton").style.display == "block"){
+              document.getElementById("okbutton").style.display = "none";
+          } else {    
+              document.getElementById("okbutton").style.display = "block";
+          } 
+          if (document.getElementById("cookie").style.display == "block"){
+              document.getElementById("cookie").style.display = "none";
+          } else {    
+              document.getElementById("cookie").style.display = "block";
+          }              
+        }                  
+        function changeImage() {
+            if (document.getElementById("startbutton").src == "images/blog/startbutton.jpg"){
+                document.getElementById("startbutton").src = "images/blog/startbutton_open.jpg";
+            } else {
+                document.getElementById("startbutton").src = "images/blog/startbutton.jpg";
+            }
+        }
+        function ok() {      
+            if (document.getElementById("aboutme2").style.display == "block"){
+                document.getElementById("aboutme2").style.display = "none";
+            } else {    
+                document.getElementById("aboutme2").style.display = "block";
+            }         
+
+            if (document.getElementById("okbutton").style.display == "block"){
+                document.getElementById("okbutton").style.display = "none";
+            } else {    
+                document.getElementById("okbutton").style.display = "block";
+            }
+            
+            if (document.getElementById("cookie").style.display == "block"){
+                document.getElementById("cookie").style.display = "none";
+            } else {    
+                document.getElementById("cookie").style.display = "block";
+            }             
+        }        
+        
+        function myComputer() {
+            if (document.getElementById("mycomputer").src == "images/blog/mycomputer.png"){
+                document.getElementById("mycomputer").src = "images/blog/mycomputer_select.png";
+            } else {
+                document.getElementById("mycomputer").src = "images/blog/mycomputer.png";
+            }
+        }        
+        function taskBarButton1() {
+            if (document.getElementById("blogbutton1").src == "images/blog/22025button.png"){
+                document.getElementById("blogbutton1").src = "images/blog/22025button_open.png";
+            } else {
+                document.getElementById("blogbutton1").src = "images/blog/22025button.png";
+            }
+        }
+        function taskBarButton2() {
+            if (document.getElementById("blogbutton2").src == "images/blog/22325button.png"){
+                document.getElementById("blogbutton2").src = "images/blog/22325button_open.png";
+            } else {
+                document.getElementById("blogbutton2").src = "images/blog/22325button.png";
+            }
+        }
+        function taskBarButton3() {
+            if (document.getElementById("blogbutton3").src == "images/blog/22425button.png"){
+                document.getElementById("blogbutton3").src = "images/blog/22425button_open.png";
+            } else {
+                document.getElementById("blogbutton3").src = "images/blog/22425button.png";
+            }
+        }
+        function taskBarButton4() {
+            if (document.getElementById("blogbutton4").src == "images/blog/22525button.png"){
+                document.getElementById("blogbutton4").src = "images/blog/22525button_open.png";
+            } else {
+                document.getElementById("blogbutton4").src = "images/blog/22525button.png";
+            }
+        }            
+        function startMenu() {
+            if (document.getElementById('image').style.display == "block"){
+                document.getElementById('image').style.display = "none";
+            } else {
+                document.getElementById('image').style.display = "block";
+            }
+            
+            if (document.getElementById('image2').style.display == "block"){
+                document.getElementById('image2').style.display = "none";
+            } else {
+                document.getElementById('image2').style.display = "block";
+            }            
+        }
+        function contextMenu() {
+            if (document.getElementById('contextmenu').style.display == "block"){
+                document.getElementById('contextmenu').style.display = "none";
+            } else {
+                document.getElementById('contextmenu').style.display = "block";
+            }
+            if (document.getElementById('aboutme1').style.display == "block"){
+                document.getElementById('aboutme1').style.display = "none";
+            } else {
+                document.getElementById('aboutme1').style.display = "block";
+            }            
+        }         
+dragElement(document.getElementById("mydiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}        
+        
+    </script>
+
+
+  </body>
+</html>
