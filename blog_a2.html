@@ -9,7 +9,7 @@
          This makes it easier to make new pages for your site. -->
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
   <style>
-    
+
   .hidden {
     display: none;
   }
@@ -70,6 +70,65 @@
     </div>
   </div>    
 
+  <div id="mydiv" class="hidden">
+    <div id="mydivheader">       
+      <img id="blogwindow" src="images/blog/22325.png">
+    </div>
+  </div>    
+
+<!--code for revealing / hiding windows & buttons-->
+<script>
+
+  function closeButtonImageChange() {
+    if (event.target == (document.getElementById("closebutton"))){
+        document.getElementById("closebutton").src = "images/blog/close_click.png";
+        console.log("button was clicked")
+  
+    setTimeout(function(){
+        document.getElementById("closebutton").src = "images/blog/close.png";
+        console.log("button was reset")
+  
+      }, 75);
+    }
+  }
+  
+  function minButtonImageChange() {
+    if (event.target == (document.getElementById("minbutton"))){
+        document.getElementById("minbutton").src = "images/blog/minimize_click.png";
+        console.log("button 2 was clicked")
+  
+    setTimeout(function(){
+        document.getElementById("minbutton").src = "images/blog/minimize.png";
+        console.log("button 2 was reset")
+        
+      }, 75);
+    }
+  }
+  
+  function hideWindow() {
+    let ele = document.getElementById("paragraph");
+  
+    if (ele.style.display === "none"){
+      ele.style.display = "block";
+      console.log("can see - paragraph")
+    } else {
+      ele.style.display = "none";
+      console.log("can't see - paragraph")
+    }
+  
+  let test = document.getElementsByClassName("hidden");
+    for (var i = 0; i < test.length; i ++) {
+      if (test[i].style.display == "none"){
+        test[i].style.display = "block"
+        console.log("can see - window")
+      } else {
+        test[i].style.display = "none"
+        console.log("can't see - window")
+    }
+  }
+}       
+</script>
+
 <!--code for dragging windows-->
 <script>
 dragElement(document.getElementById("mydiv"));
@@ -115,57 +174,5 @@ function closeDragElement() {
 }        
 </script>
 
-<!--code for revealing / hiding windows & buttons-->
-<script>
-
-function closeButtonImageChange() {
-  if (event.target == (document.getElementById("closebutton"))){
-      document.getElementById("closebutton").src = "images/blog/close_click.png";
-      console.log("button was clicked")
-
-  setTimeout(function(){
-      document.getElementById("closebutton").src = "images/blog/close.png";
-      console.log("button was reset")
-
-    }, 75);
-  }
-}
-
-function minButtonImageChange() {
-  if (event.target == (document.getElementById("minbutton"))){
-      document.getElementById("minbutton").src = "images/blog/minimize_click.png";
-      console.log("button 2 was clicked")
-
-  setTimeout(function(){
-      document.getElementById("minbutton").src = "images/blog/minimize.png";
-      console.log("button 2 was reset")
-      
-      }, 75);
-    }
-  }
-
-function hideWindow() {
-  let ele = document.getElementById("paragraph");
-
-  if (ele.style.display === "block"){
-    ele.style.display = "none";
-    console.log("can't see - paragraph")
-  } else {
-    ele.style.display = "block";
-    console.log("can see - paragraph")
-  }
-}
-
-let test = document.getElementsByClassName("hidden");
-  for (var i = 0; i < test.length; i ++) {
-    if (test[i].style.display == "none"){
-      test[i].style.display = "block"
-      console.log("can see - window")
-    } else {
-      test[i].style.display = "none"
-      console.log("can't see - window")
-  }
-}       
-</script>
   </body>
 </html>
