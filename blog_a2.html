@@ -13,7 +13,7 @@
   .hidden {
     display: none;
   }
-  
+
   .clickable {
     cursor: pointer
   }
@@ -36,10 +36,32 @@
     left: 473px;
   }  
 
-  #mydiv {
+  #id1 {
     position: absolute;
     z-index: 9;
   }
+
+  #id2 {
+    position: absolute;
+    z-index: 9;
+  }
+
+  #id1header {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }
+ 
+  #id2header {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }  
+
+  #id3 {
+    display: none;
+  }
+
   #paragraph {
     position: absolute;
     display: none;
@@ -48,33 +70,67 @@
     left: 8px;
     font-family: "Fixedsys Excelsior 3.01";
   }
-  
-  #mydivheader {
-    cursor: move
-    padding: 0px;
-    z-index: 10;
+
+  #startbutton {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:2px;
+    z-index:1;
+  }
+
+  #taskbar {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  #neocities {
+    cursor: pointer;       
+    position: absolute;
+    bottom: 23px;
+    left: 26px;
+    z-index: 4;
+  }
+
+  #startmenu { 
+    position: absolute;
+    bottom: 20px;
+    left: 2px;
+    z-index: 3;
   }
   </style>
   </head>
   <body style="background-color: #008080;">
 
-  <img class="clickable" src="images/blog/desktop icons/22025.png" onclick="hideWindow()">
+  <!--desktop icons-->
+  <img class="clickable" src="images/blog/desktop icons/22025.png" onclick="createWindow('id1')">
+  <img class="clickable" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2')">  
 
   <!--windows-->
-  <div id="mydiv" class="hidden">
-    <div id="mydivheader">
+  <div id="id1" class="hidden">
+    <div id="id1header">
       <p id="paragraph">test</p>      
-      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow()">        
-      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow()">      
+      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
+      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">      
       <img id="blogwindow" src="images/blog/22025_notext.png">
     </div>
-  </div>    
-
-  <div id="mydiv" class="hidden">
-    <div id="mydivheader">       
+  </div>  
+  
+  <div id="id2" class="hidden">
+    <div id="id2header">     
       <img id="blogwindow" src="images/blog/22325.png">
     </div>
-  </div>    
+  </div>     
+
+  <!--start button / task bar-->
+  <div id="id3">
+    <img id="neocities" src="images/blog/taskbar/neocities.jpg" onclick="location.href='https://gremghost.neocities.org';">
+    <img id="startmenu" src="images/blog/taskbar/startmenu.jpg">
+  </div>
+  <img id="startbutton" src="images/blog/taskbar/startbutton.jpg" onclick="hideWindow(id3); changeImage()">
+
+  <img id="taskbar" src="images/blog/taskbar/taskbar.png">
 
 <!--code for revealing / hiding windows & buttons-->
 <script>
@@ -105,33 +161,28 @@
     }
   }
   
-  function hideWindow() {
-    let ele = document.getElementById("paragraph");
+  function hideWindow(event) {
+    const btn = event.target; //checking what was clicked
+    const post = btn.parentNode.parentNode; //storing it and the parents
   
-    if (ele.style.display === "none"){
-      ele.style.display = "block";
-      console.log("can see - paragraph")
+    if (post.style.display === "none"){ //if hidden, unhide
+      post.style.display = "block"; 
     } else {
-      ele.style.display = "none";
-      console.log("can't see - paragraph")
-    }
-  
-  let test = document.getElementsByClassName("hidden");
-    for (var i = 0; i < test.length; i ++) {
-      if (test[i].style.display == "none"){
-        test[i].style.display = "block"
-        console.log("can see - window")
-      } else {
-        test[i].style.display = "none"
-        console.log("can't see - window")
+      post.style.display = "none"; //hide if not hidden
     }
   }
-}       
+  
+  function createWindow(id) {
+    const el = document.getElementById(id); //getting an element by the id
+    el.style.display = "block"; //unhiding it
+    console.log("window created");
+  }
 </script>
 
 <!--code for dragging windows-->
 <script>
-dragElement(document.getElementById("mydiv"));
+dragElement(document.getElementById("id1"));
+dragElement(document.getElementById("id2"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -174,5 +225,15 @@ function closeDragElement() {
 }        
 </script>
 
+<!--code for start button / menu / taskbar buttons-->
+<script>
+  function changeImage() {
+    if (document.getElementById("startbutton").src == "images/blog/taskbar/startbutton.jpg"){
+      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton_open.jpg";
+    } else {
+      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton.jpg";
+    }
+  }
+</script>
   </body>
 </html>
