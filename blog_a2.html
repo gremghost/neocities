@@ -46,6 +46,19 @@
     position: absolute;
     z-index: 9;
   }
+
+  #id1header {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }
+ 
+  #id2header {
+    cursor: move
+    padding: 0px;
+    z-index: 10;
+  }  
+
   #paragraph {
     position: absolute;
     display: none;
@@ -54,12 +67,38 @@
     left: 8px;
     font-family: "Fixedsys Excelsior 3.01";
   }
-  
-  #mydivheader {
-    cursor: move
-    padding: 0px;
-    z-index: 10;
+
+  #startbutton {
+    cursor: pointer;
+    position: absolute;
+    bottom:2px;
+    left:2px;
+    z-index:1;
   }
+
+  #taskbar {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  #neocities {
+    cursor: pointer;       
+    display: none;
+    position: absolute;
+    bottom: 23px;
+    left: 26px;
+    z-index: 4;
+  }
+
+  #startmenu { 
+    display: none; 
+    position: absolute;
+    bottom: 20px;
+    left: 2px;
+    z-index: 3;
+  }
+
   </style>
   </head>
   <body style="background-color: #008080;">
@@ -83,6 +122,13 @@
       <img id="blogwindow" src="images/blog/22325.png">
     </div>
   </div>     
+
+<!--taskbar, start button, and taskbar buttons-->
+  <img id="neocities" src="images/blog/taskbar/neocities.jpg" onclick="location.href='https://gremghost.neocities.org';">
+  <img id="startmenu" src="images/blog/taskbar/startmenu.jpg">
+  <img id="startbutton" src="images/blog/taskbar/startbutton.jpg" onclick="startMenu(); changeImage()">
+
+  <img id="taskbar" src="images/blog/taskbar/taskbar.png">
 
 <!--code for revealing / hiding windows & buttons-->
 <script>
@@ -177,5 +223,31 @@ function closeDragElement() {
 }        
 </script>
 
+<!--code for start button / menu / taskbar buttons-->
+<script>
+
+  function changeImage() {
+    if (document.getElementById("startbutton").src == "images/blog/taskbar/startbutton.jpg"){
+      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton_open.jpg";
+    } else {
+      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton.jpg";
+    }
+  }
+
+  function startMenu() {
+    if (document.getElementById('neocities').style.display == "block"){
+      document.getElementById('neocities').style.display = "none";
+    } else {
+      document.getElementById('neocities').style.display = "block";
+    }
+            
+    if (document.getElementById('startmenu').style.display == "block"){
+      document.getElementById('startmenu').style.display = "none";
+    } else {
+      document.getElementById('startmenu').style.display = "block";
+    }            
+   }
+
+</script>
   </body>
 </html>
