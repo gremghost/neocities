@@ -136,9 +136,9 @@
   </audio>
   
   <!--desktop icons-->
-  <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="">  
-  <img class="clickable" id="blogicon1"src="images/blog/desktop icons/22025.png" onclick="createWindow('id1')">
-  <img class="clickable" id="blogicon2" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2')">  
+  <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconState('mycomputer', 'images/blog/desktop icons/mycomputer')">  
+  <img class="clickable" id="blogicon1"src="images/blog/desktop icons/22025.png" onclick="createWindow('id1'); iconState('blogicon1', 'images/blog/desktop icons/22025')">
+  <img class="clickable" id="blogicon2" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2'); iconState('blogicon2', 'images/blog/desktop icons/22325')">  
   <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
 
   <!--windows-->
@@ -163,7 +163,7 @@
     <img id="startmenu" src="images/blog/taskbar/startmenu.jpg">
   </div>  
 
-  <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton')">
+  <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton'); showMenu('id3')">
   <img id="taskbar" src="images/blog/taskbar/taskbar.png">
 
 <!--code for revealing / hiding windows & buttons-->
@@ -205,6 +205,16 @@
       post.style.display = "none"; //hide if not hidden
     }
   }
+
+  function showMenu(id) {
+    const el2 = document.getElementById(id); //getting an element by the id  
+   
+    if (el2.style.display === "block"){
+      el2.style.display = "none"; 
+    } else {
+      el2.style.display = "block";
+    }
+  }  
   
   function createWindow(id) {
     const el = document.getElementById(id); //getting an element by the id
@@ -263,11 +273,33 @@ function closeDragElement() {
 <script>
   function changeImage(id, src) {
     let button = document.getElementById(id);
-    if(button.src == src + '.png'){
-      button.src = src + '_click.png';
-    } else {
+    console.log("button.src = " + button.src);
+    console.log("src = " + src + '.png');    
+    if(button.src.includes('_click')){
       button.src = src + '.png';
+      console.log("no click");
+    } else {
+      button.src = src + '_click.png';
+      console.log("yes click")
   }
+}
+
+//basic setup for function, needs to be changed to
+// "if clicked inside - do this, if clicked outside - do this, if clicked on something else - do this"
+function iconState(id, src) {
+    let icon = document.getElementById(id);
+
+    document.addEventListener('click', event => {
+    const isClickInside = icon.contains(event.target);
+    console.log(icon);
+    console.log(event.target);
+
+        if (!isClickInside) {
+          icon.src = src + '_idleselect.png';
+        } else {
+          icon.src = src + '_select.png';
+        }
+      })
 }
 </script>
   </body>
