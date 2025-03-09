@@ -47,6 +47,10 @@
     z-index: 9;
   }
 
+  #id3 {
+    display: none;
+  }  
+
   #id1header {
     cursor: move
     padding: 0px;
@@ -84,7 +88,6 @@
 
   #neocities {
     cursor: pointer;       
-    display: none;
     position: absolute;
     bottom: 23px;
     left: 26px;
@@ -92,7 +95,6 @@
   }
 
   #startmenu { 
-    display: none; 
     position: absolute;
     bottom: 20px;
     left: 2px;
@@ -124,10 +126,12 @@
   </div>     
 
 <!--taskbar, start button, and taskbar buttons-->
-  <img id="neocities" src="images/blog/taskbar/neocities.jpg" onclick="location.href='https://gremghost.neocities.org';">
-  <img id="startmenu" src="images/blog/taskbar/startmenu.jpg">
-  <img id="startbutton" src="images/blog/taskbar/startbutton.jpg" onclick="startMenu(); changeImage()">
+  <div id="id3">
+    <img id="neocities" src="images/blog/taskbar/neocities.jpg" onclick="location.href='https://gremghost.neocities.org';">
+    <img id="startmenu" src="images/blog/taskbar/startmenu.jpg">
+  </div>  
 
+  <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton')">
   <img id="taskbar" src="images/blog/taskbar/taskbar.png">
 
 <!--code for revealing / hiding windows & buttons-->
@@ -145,7 +149,7 @@
       }, 75);
     }
   }
-  
+
   function minButtonImageChange() {
     if (event.target == (document.getElementById("minbutton"))){
         document.getElementById("minbutton").src = "images/blog/minimize_click.png";
@@ -225,29 +229,14 @@ function closeDragElement() {
 
 <!--code for start button / menu / taskbar buttons-->
 <script>
-
-  function changeImage() {
-    if (document.getElementById("startbutton").src == "images/blog/taskbar/startbutton.jpg"){
-      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton_open.jpg";
+  function changeImage(id, src) {
+    let button = document.getElementById(id);
+    if(button.src == src + '.png'){
+      button.src = src + '_click.png';
     } else {
-      document.getElementById("startbutton").src = "images/blog/taskbar/startbutton.jpg";
-    }
+      button.src = src + '.png';
   }
-
-  function startMenu() {
-    if (document.getElementById('neocities').style.display == "block"){
-      document.getElementById('neocities').style.display = "none";
-    } else {
-      document.getElementById('neocities').style.display = "block";
-    }
-            
-    if (document.getElementById('startmenu').style.display == "block"){
-      document.getElementById('startmenu').style.display = "none";
-    } else {
-      document.getElementById('startmenu').style.display = "block";
-    }            
-   }
-
+}
 </script>
   </body>
 </html>
