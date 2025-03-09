@@ -101,13 +101,45 @@
     z-index: 3;
   }
 
+  #desktop { 
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+  }
+
+  #mycomputer {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    left:4px;
+    z-index:0;
+  }
+  
+  #blogicon1 {
+    position: absolute;
+    top: 677px;
+    left: 20px;
+  }
+
+  #blogicon2 {
+    position: absolute;
+    top: 754px;
+    left: 20px;
+  }  
   </style>
   </head>
   <body style="background-color: #008080;">
 
+  <audio autoplay>
+    <source src="https://files.catbox.moe/4aaf10.mp3" type="audio/mpeg">
+  </audio>
+  
   <!--desktop icons-->
-  <img class="clickable" src="images/blog/desktop icons/22025.png" onclick="createWindow('id1')">
-  <img class="clickable" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2')">  
+  <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="">  
+  <img class="clickable" id="blogicon1"src="images/blog/desktop icons/22025.png" onclick="createWindow('id1')">
+  <img class="clickable" id="blogicon2" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2')">  
+  <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
 
   <!--windows-->
   <div id="id1" class="hidden">

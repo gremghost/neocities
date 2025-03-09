@@ -9,14 +9,48 @@
          This makes it easier to make new pages for your site. -->
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
   <style>
-    .clickable {
-      margin-top: 282px;
-      margin-left: 715px;
+    #window {
+      position: absolute;
+      top: 282px;
+      left: 715px;
+      z-index: 1;
+    }
+
+    #ok {
+      position: absolute;
+      left: 1116px;
+      top: 315px;
+      z-index: 2;
+    }
+    
+    #fname {
+      position: absolute;
+      top: 393px;
+      left: 881px;
+      z-index: 2;
+    }
+    .clickable{
+      cursor: pointer;
     }
   </style>
   </head>
   <body style="background-color: #008080;">
-    <img class="clickable" src="images/blog/login.png">
-    <input type="text" id="fname" name="fname">
+
+    <img class="clickable" id="ok" src="images/blog/ok.png" onclick="buttonImageChange()">
+    <img id="window" src="images/blog/login.png">
+
+  <script>
+  function buttonImageChange() {
+    if (event.target == (document.getElementById("ok"))){
+        document.getElementById("ok").src = "images/blog/ok_select.png";
+        console.log("button was clicked")
+
+    setTimeout(function(){
+        location.href="blog_a2.html";
+
+    }, 250);
+    }
+  }    
+  </script>
   </body>
 </html>
