@@ -301,17 +301,16 @@ function iconState(id, src) {
     } else {
       console.log("select")
       icon.src = src + '_select.png';
-    }
-
-    for (let id of iconIds){
-      if (id != event.target.id){
-        console.log("id:" + id);
-        console.log("eti:" + event.target.id);
-      const currentIcon = document.getElementById(id);
-        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
+      
+        for (let id of iconIds){
+        if (id != event.target.id){
+          console.log("id:" + id);
+          console.log("eti:" + event.target.id);
+        const currentIcon = document.getElementById(id);
+          currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
       }
     } 
-    
+    }   
   })
 }
 </script>
