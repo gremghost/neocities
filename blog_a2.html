@@ -116,13 +116,13 @@
     z-index:0;
   }
   
-  #blogicon1 {
+  #padico1 {
     position: absolute;
     top: 677px;
     left: 20px;
   }
 
-  #blogicon2 {
+  #padico2 {
     position: absolute;
     top: 754px;
     left: 20px;
@@ -137,8 +137,8 @@
   
   <!--desktop icons-->
   <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconState('mycomputer', 'images/blog/desktop icons/mycomputer')">  
-  <img class="clickable" id="blogicon1"src="images/blog/desktop icons/22025.png" onclick="createWindow('id1'); iconState('blogicon1', 'images/blog/desktop icons/22025')">
-  <img class="clickable" id="blogicon2" src="images/blog/desktop icons/22325.png" onclick="createWindow('id2'); iconState('blogicon2', 'images/blog/desktop icons/22325')">  
+  <img class="clickable" id="padico1"src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1')">
+  <img class="clickable" id="padico2" src="images/blog/desktop icons/padico2.png" onclick="createWindow('id2'); iconState('padico2', 'images/blog/desktop icons/padico2')">  
   <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
 
   <!--windows-->
@@ -285,21 +285,34 @@ function closeDragElement() {
 }
 
 //basic setup for function, needs to be changed to
-// "if clicked inside - do this, if clicked outside - do this, if clicked on something else - do this"
+// "if clicked inside - do this (done), if clicked outside - do this (done), if clicked on something else - do this"
 function iconState(id, src) {
     let icon = document.getElementById(id);
+    let iconIds = ["mycomputer", "padico1", "padico2"];
 
     document.addEventListener('click', event => {
     const isClickInside = icon.contains(event.target);
     console.log(icon);
     console.log(event.target);
 
-        if (!isClickInside) {
-          icon.src = src + '_idleselect.png';
-        } else {
-          icon.src = src + '_select.png';
-        }
-      })
+    if (!isClickInside) {
+      console.log("idle select")
+      icon.src = src + '_idleselect.png';
+    } else {
+      console.log("select")
+      icon.src = src + '_select.png';
+    }
+
+    for (let id of iconIds){
+      if (id != event.target.id){
+        console.log("id:" + id);
+        console.log("eti:" + event.target.id);
+      const currentIcon = document.getElementById(id);
+        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
+      }
+    } 
+    
+  })
 }
 </script>
   </body>
