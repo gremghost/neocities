@@ -24,9 +24,8 @@
       display: grid;
       grid-template-columns: 80% 20%;
     }
-<<<<<<< HEAD
     .leftdiv1 {
-      grid-template-columns: 40% 10% 35% 15%;
+      grid-template-columns: auto 1fr auto;
     }    
     #left > div {
       border-right: 3px solid white;
@@ -46,14 +45,6 @@
     }    
     .rightdiv2 {
       height: 66%;
-=======
-    .rightdiv1 {
-      grid-template-columns: 20% 80%;
-      grid-template-rows: 20% 80%;      
-    }    
-    .rightdiv2 {
-      height: 115%;
->>>>>>> f374522356bb6f4abfb45582fc71a6401d15c844
     }
     #right > div {
       border-left: 6px solid white;
@@ -80,6 +71,13 @@
       margin: 0 1em 0.5em 1em;
       color: white;
     }    
+    #buttons1 {
+      width: fit-content;
+    }
+    #buttons2 {
+      width: fit-content;
+      grid-column: 3 / 4;
+    }
     </style>
 </head>
 <body background="gifs/backgrounds/purpleweb.gif">
@@ -87,7 +85,6 @@
   <div class="container">
 
     <div id="left"> 
-<<<<<<< HEAD
       <div class="leftdiv1">
         <img src="images/websitelogo2.png"
           width="60%">
@@ -121,8 +118,6 @@
       </div>
 
       <div class="leftdiv1">
-        <br>
-        <p style="color:white;text-align:center;font-family:'Times New Roman'"> i dont know what i'm doing so give me time lmao </p>
         <br>
         <h3 style="color:white;text-align:center;font-family:'Times New Roman'">QUOTE OF WHENEVER:</h3>
         <br>
@@ -159,11 +154,12 @@
         <br>
         <br>
         <br>
+        <br>
         <br>                                             
       </div>
 
       <div class="leftdiv1">
-        <div>
+        <div id="buttons1">
             <img src="gifs/buttons/aqueercodedthis.png";>
             <img src="gifs/buttons/defund_badge.gif";>
             <img src="gifs/buttons/free_palestine.gif";>
@@ -171,15 +167,13 @@
         </div>
         <div>
         </div>
-        <div>
+        <div id="buttons2">
           <img src="gifs/netaol.gif";>
           <img src="gifs/buttons/parental.gif";>
           <img src="gifs/buttons/oldmanyaoi.gif";>
           <img src="gifs/buttons/mediawindows.gif";>
         </div>
       </div>      
-=======
->>>>>>> f374522356bb6f4abfb45582fc71a6401d15c844
     </div>
 
     <div id="right">
