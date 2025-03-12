@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gremghost :3</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}      
+    /* Solid border */
+    hr.solid {
+      border-top: 3px solid white;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 80% 20%;
+    }
+    .rightdiv1 {
+      grid-template-columns: 20% 80%;
+      grid-template-rows: 20% 80%;      
+    }    
+    .rightdiv2 {
+      height: 115%;
+    }
+    #right > div {
+      border-left: 6px solid white;
+      border-top: 6px solid white;
+      border-bottom: 6px solid white
+    }
+    #right > div:first-of-type {
+      border-top: 0;
+    }
+    #right > div:last-of-type {
+      border-bottom: 0;
+    }    
+
+    #statuscafe {
+      padding: .5em;
+      background-color: purple;
+      color: yellow;
+    }
+    #statuscafe-username {
+      margin-bottom: .5em;
+      color: white;
+    }
+    #statuscafe-content {
+      margin: 0 1em 0.5em 1em;
+      color: white;
+    }    
+    </style>
+</head>
+<body background="gifs/backgrounds/purpleweb.gif">
+
+  <div class="container">
+
+    <div id="left"> 
+      <p style="color: white">test</p>
+    </div>
+
+    <div id="right">
+      <div class="rightdiv1">
+        <div id="statuscafe">
+          <div id="statuscafe-username">
+          </div>
+          <div id="statuscafe-content">
+          </div>
+        </div>
+        <script src="https://status.cafe/current-status.js?name=gremghost" defer>
+        </script>
+      </div>
+      <div class="rightdiv2">
+        <iframe style="height: 100%; width: 100%" src="https://gremghost.atabook.org/" aria-label="guestbook" loading="lazy"></iframe>
+      </div>    
+      <div class="rightdiv1">
+        <center>
+        <img src="gifs/netscape.gif"
+        width=75%>
+        </center>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
