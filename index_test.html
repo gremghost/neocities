@@ -25,6 +25,7 @@
       grid-template-columns: 80% 20%;
     }
     .leftdiv1 {
+      display: grid;
       grid-template-columns: auto 1fr auto;
     }    
     #left > div {
@@ -37,7 +38,11 @@
     }      
     #left > div:last-of-type {
       border-bottom: 0;
-    }         
+    } 
+    #left {
+      display: flex;
+      flex-direction: column;
+    }        
     .rightdiv1 {
       grid-template-columns: 20% 80%;
       grid-template-rows: 20% 80%;      
@@ -87,7 +92,7 @@
     <div id="left"> 
       <div class="leftdiv1">
         <img src="images/websitelogo2.png"
-          width="60%">
+          width="200%">
       </div>
 
       <div class="leftdiv1">
@@ -117,7 +122,7 @@
         </center>        
       </div>
 
-      <div class="leftdiv1">
+      <div style="flex: 1;">
         <br>
         <h3 style="color:white;text-align:center;font-family:'Times New Roman'">QUOTE OF WHENEVER:</h3>
         <br>
@@ -155,7 +160,10 @@
         <br>
         <br>
         <br>
-        <br>                                             
+        <br>
+        <br>    
+        <br>
+        <br>                                                             
       </div>
 
       <div class="leftdiv1">
@@ -193,7 +201,7 @@
       <div class="rightdiv1">
         <center>
         <img src="gifs/netscape.gif"
-        width=75%>
+        width="62%">
         </center>
       </div>
     </div>
