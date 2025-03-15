@@ -93,16 +93,73 @@
       padding-bottom: 5px;
       background: url("gifs/backgrounds/num.gif");
     }
+    #id1 {
+      position: absolute;
+      z-index: 9;
+    }
+    #id1header {
+      cursor: move
+      padding: 0px;
+      z-index: 10;
+    }    
+    #abtmewin {
+      z-index:11;
+    }    
+    .hidden {
+      display: none;
+    }    
+    .clickable {
+      cursor: pointer;
+    }
+    #closebutton {
+      position: absolute;
+      cursor: pointer;
+      z-index:12;
+      top: 6px;
+      left: 665px;
+    } 
+    #biobutton {
+      position: absolute;
+      cursor: pointer;
+      z-index:11;
+      top: 150px;
+      left: 522px;
+    }
+    #intbutton {
+      position: absolute;
+      cursor: pointer;
+      z-index:11;
+      top: 307px;
+      left: 522px;
+    }    
+    #linksbutton {
+      position: absolute;
+      cursor: pointer;
+      z-index:11;
+      top: 465px;
+      left: 523px;
+    }                    
     </style>
 </head>
 <body background="gifs/backgrounds/purpleweb.gif">
+
+  <div id="id1" class="hidden">
+    <div id="id1header">
+      <img id="biobutton" src="images/about me/bio_click.png" onclick="changeImage('biobutton', 'images/about me/bio')">  
+      <img id="intbutton" src="images/about me/interests.png" onclick="changeImage('intbutton', 'images/about me/interests')">
+      <img id="linksbutton" src="images/about me/links.png" onclick="changeImage('linksbutton', 'images/about me/links')">             
+      <img id="closebutton" src="images/about me/close.png" onclick="closeButtonImageChange(); hideWindow(event)">     
+      <img id="abtmewin" src="images/about me/aboutme.png">
+    </div>
+  </div> 
 
   <div class="container">
 
     <div id="left"> 
       <div class="leftdiv1">
-        <img src="images/websitelogo2.png"
-          width="800px">
+        <img class="clickable" src="images/websitelogo2.png"
+          width="800px"
+          onclick="createWindow('id1')">
       </div>
 
       <div id="test">
@@ -193,6 +250,102 @@
       </div>
     </div>
 
-  </div>
+  </div> 
+
+<script>
+  function createWindow(id) {
+    const el = document.getElementById(id); //getting an element by the id
+    el.style.display = "block"; //unhiding it
+    console.log("window created");
+  }  
+</script>
+
+<script>
+
+  function closeButtonImageChange() {
+    if (event.target == (document.getElementById("closebutton"))){
+        document.getElementById("closebutton").src = "images/about me/close_click.png";
+        console.log("button was clicked")
+
+    setTimeout(function(){
+        document.getElementById("closebutton").src = "images/about me/close.png";
+        console.log("button was reset")
+
+      }, 75);
+    }
+  }
+
+  function hideWindow(event) {
+    const btn = event.target; //checking what was clicked
+    const post = btn.parentNode.parentNode; //storing it and the parents
+
+    if (post.style.display === "none"){ //if hidden, unhide
+      post.style.display = "block"; 
+    } else {
+      post.style.display = "none"; //hide if not hidden
+    }
+  }
+</script>
+
+<script>
+  function changeImage(id, src) {
+    let button = document.getElementById(id);
+    console.log("button.src = " + button.src);
+    console.log("src = " + src + '.png');    
+    if(button.src.includes('_click')){
+      button.src = src + '.png';
+      console.log("no click");
+    } else {
+      button.src = src + '_click.png';
+      console.log("yes click")
+  }  
+}
+</script>
+
+<!--code for dragging windows-->
+<script>
+  dragElement(document.getElementById("id1"));
+  
+  function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+      // if present, the header is where you move the DIV from:
+      document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+      // otherwise, move the DIV from anywhere inside the DIV:
+      elmnt.onmousedown = dragMouseDown;
+    }
+  
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+    }
+  
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+  
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+    }
+  }        
+  </script>
+
 </body>
 </html>
