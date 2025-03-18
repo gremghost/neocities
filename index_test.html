@@ -138,6 +138,27 @@
       z-index:11;
       top: 465px;
       left: 523px;
+    }        
+    #bioimage {
+      position: absolute;
+      display: none;
+      z-index: 11;
+      left: 6px;
+      top: 120px;
+    }   
+    #intimage {
+      position: absolute;
+      display: none;
+      z-index: 11;
+      left: 6px;
+      top: 120px;
+    }   
+    #linksimage {
+      position: absolute;
+      display: none;
+      z-index: 11;
+      left: 6px;
+      top: 120px;
     }                    
     </style>
 </head>
@@ -145,10 +166,15 @@
 
   <div id="id1" class="hidden">
     <div id="id1header">
-      <img id="biobutton" src="images/about me/bio_click.png" onclick="changeImage('biobutton', 'images/about me/bio')">  
-      <img id="intbutton" src="images/about me/interests.png" onclick="changeImage('intbutton', 'images/about me/interests')">
-      <img id="linksbutton" src="images/about me/links.png" onclick="changeImage('linksbutton', 'images/about me/links')">             
-      <img id="closebutton" src="images/about me/close.png" onclick="closeButtonImageChange(); hideWindow(event)">     
+      <img id="bioimage" src="images/about me/test1.png">
+      <img id="intimage" src="images/about me/test2.png">  
+      <img id="linksimage" src="images/about me/test3.png">        
+         
+      <img id="biobutton" src="images/about me/bio.png" onclick="showBio()">  
+      <img id="intbutton" src="images/about me/interests.png" onclick="showInterests()">
+      <img id="linksbutton" src="images/about me/links.png" onclick="showLinks()">             
+      <img id="closebutton" src="images/about me/close.png" onclick="closeButtonImageChange(); hideWindow(event)">  
+
       <img id="abtmewin" src="images/about me/aboutme.png">
     </div>
   </div> 
@@ -278,12 +304,14 @@
   function hideWindow(event) {
     const btn = event.target; //checking what was clicked
     const post = btn.parentNode.parentNode; //storing it and the parents
-
-    if (post.style.display === "none"){ //if hidden, unhide
+    
+    setTimeout(function(){
+      if (post.style.display === "none"){ //if hidden, unhide
       post.style.display = "block"; 
-    } else {
+      } else {
       post.style.display = "none"; //hide if not hidden
-    }
+      }
+    }, 125);
   }
 </script>
 
@@ -347,5 +375,35 @@
   }        
   </script>
 
+  <script>
+  function showBio(){
+    document.getElementById("bioimage").style.display = 'block';
+    document.getElementById("intimage").style.display = 'none';
+    document.getElementById("linksimage").style.display = 'none';
+
+    document.getElementById("biobutton").src = "images/about me/bio_click.png"
+    document.getElementById("intbutton").src = "images/about me/interests.png"
+    document.getElementById("linksbutton").src = "images/about me/links.png"    
+  }
+  function showInterests(){
+    document.getElementById("intimage").style.display = 'block';
+    document.getElementById("bioimage").style.display = 'none';
+    document.getElementById("linksimage").style.display = 'none';
+
+    document.getElementById("biobutton").src = "images/about me/bio.png"
+    document.getElementById("intbutton").src = "images/about me/interests_click.png"
+    document.getElementById("linksbutton").src = "images/about me/links.png"    
+  }
+  function showLinks(){
+    document.getElementById("linksimage").style.display = 'block';
+    document.getElementById("bioimage").style.display = 'none';
+    document.getElementById("intimage").style.display = 'none';
+
+    document.getElementById("biobutton").src = "images/about me/bio.png"
+    document.getElementById("intbutton").src = "images/about me/interests.png"
+    document.getElementById("linksbutton").src = "images/about me/links_click.png"    
+  } 
+
+  </script>
 </body>
 </html>
