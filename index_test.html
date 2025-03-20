@@ -159,13 +159,30 @@
       z-index: 11;
       left: 6px;
       top: 120px;
-    }                    
+    }    
+    #baseimage {
+      position: absolute;
+      display: block;
+      z-index: 11;
+      left: 6px;
+      top: 120px;
+    } 
+    #basecheck {
+      position: absolute;
+      cursor: pointer;
+      display: block;
+      z-index: 12;
+      left: 184px;
+      top: 398px;
+    }                            
     </style>
 </head>
 <body background="gifs/backgrounds/purpleweb.gif">
 
   <div id="id1" class="hidden">
     <div id="id1header">
+      <img id="basecheck" src="images/about me/checkbox.png" onclick="changeImage('basecheck', 'images/about me/checkbox')">
+      <img id="baseimage" src="images/about me/clippy.png">
       <img id="bioimage" src="images/about me/test1.png">
       <img id="intimage" src="images/about me/test2.png">  
       <img id="linksimage" src="images/about me/test3.png">        
@@ -317,6 +334,7 @@
 
 <script>
   function changeImage(id, src) {
+    console.log(id);
     let button = document.getElementById(id);
     console.log("button.src = " + button.src);
     console.log("src = " + src + '.png');    
@@ -380,6 +398,8 @@
     document.getElementById("bioimage").style.display = 'block';
     document.getElementById("intimage").style.display = 'none';
     document.getElementById("linksimage").style.display = 'none';
+    document.getElementById("basecheck").style.display = 'none';
+    document.getElementById("baseimage").style.display = 'none';
 
     document.getElementById("biobutton").src = "images/about me/bio_click.png"
     document.getElementById("intbutton").src = "images/about me/interests.png"
@@ -389,6 +409,8 @@
     document.getElementById("intimage").style.display = 'block';
     document.getElementById("bioimage").style.display = 'none';
     document.getElementById("linksimage").style.display = 'none';
+    document.getElementById("basecheck").style.display = 'none';
+    document.getElementById("baseimage").style.display = 'none';
 
     document.getElementById("biobutton").src = "images/about me/bio.png"
     document.getElementById("intbutton").src = "images/about me/interests_click.png"
@@ -398,6 +420,8 @@
     document.getElementById("linksimage").style.display = 'block';
     document.getElementById("bioimage").style.display = 'none';
     document.getElementById("intimage").style.display = 'none';
+    document.getElementById("basecheck").style.display = 'none';
+    document.getElementById("baseimage").style.display = 'none';
 
     document.getElementById("biobutton").src = "images/about me/bio.png"
     document.getElementById("intbutton").src = "images/about me/interests.png"
