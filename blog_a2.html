@@ -27,14 +27,14 @@
     cursor: pointer;
     z-index:12;
     top: 6px;
-    left: 507px;
+    right: 6px;
   }
   #minbutton {
     position: absolute;
     cursor: pointer;
     z-index:12;
     top: 6px;
-    left: 473px;
+    right: 40px;
   }  
 
   #id1 {
@@ -138,7 +138,7 @@
           windows need to be able to move on top or below each window based on which was clicked
           animations for all popout menus / window minimize - maximize
           selected icons and all that jazz working properly instead of how it is rn
-          figure out a way for the min - max buttons to be placed w/o having to create new ids (hopefully)
+          --figure out a way for the min - max buttons to be placed w/o having to create new ids (hopefully)--
           custom cursor based on win98
           make the clock functional
           figure out a way to hide / unhide text again with the windows
@@ -150,7 +150,7 @@
   
   <!--desktop icons-->
   <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconState('mycomputer', 'images/blog/desktop icons/mycomputer')">  
-  <img class="clickable" id="padico1"src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1')">
+  <img class="clickable" id="padico1" src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1')">
   <img class="clickable" id="padico2" src="images/blog/desktop icons/padico2.png" onclick="createWindow('id2'); iconState('padico2', 'images/blog/desktop icons/padico2')">  
   <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
 
@@ -309,25 +309,35 @@ function iconState(id, src) {
 
     document.addEventListener('click', event => {
     const isClickInside = icon.contains(event.target);
-    console.log(icon);
-    console.log(event.target);
+    console.log("icon:" + icon);
+    console.log("event target:" + event.target);
 
     if (!isClickInside) {
       console.log("idle select")
-      icon.src = src + '_idleselect.png';
+      icon.src = src + '_idleselect.png'; //changes to idle select if it's not clicked inside
     } else {
       console.log("select")
-      icon.src = src + '_select.png';
-      
-        for (let id of iconIds){
-        if (id != event.target.id){
-          console.log("id:" + id);
-          console.log("eti:" + event.target.id);
-        const currentIcon = document.getElementById(id);
-          currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
-      }
+      icon.src = src + '_select.png';   //changes to selected if it was clicked inside
     } 
-    }   
+    for (let id of iconIds){ //what this SHOULD be doing is only changing to default state IF we're clicked on another icon
+      if (id != event.target.id){
+        console.log("id:" + id);
+        console.log("eti:" + event.target.id);
+        const currentIcon = document.getElementById(id);
+        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
+      }
+    }
+  
+    for (let id of iconIds){
+      if (!isClickInside){
+        icon.src = src + '_idleselect.png';
+      } else if (id != iconIds){
+        icon.src = src + '.png';
+      } else {
+        icon.src = src + '_select.png';
+      }
+    }
+
   })
 }
 </script>
