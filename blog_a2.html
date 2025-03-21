@@ -66,10 +66,11 @@
   #paragraph {
     position: absolute;
     display: none;
-    z-index: 11;
+    z-index: 12;
     top: 28px;
     left: 8px;
     font-family: "Fixedsys Excelsior 3.01";
+    color: black;
   }
 
   #startbutton {
@@ -131,6 +132,18 @@
   </head>
   <body style="background-color: #008080;">
 
+  <!--list of things that needs to be added for this page to be complete-->
+      <!--windows need to be able to go inactive should you be clicking on another window
+          taskbar icons for each window + them moving accordingly based on which one was open first
+          windows need to be able to move on top or below each window based on which was clicked
+          animations for all popout menus / window minimize - maximize
+          selected icons and all that jazz working properly instead of how it is rn
+          figure out a way for the min - max buttons to be placed w/o having to create new ids (hopefully)
+          custom cursor based on win98
+          make the clock functional
+          figure out a way to hide / unhide text again with the windows
+          when a window is closed, it shouldn't reopen where it was previously when closed-->
+
   <audio autoplay>
     <source src="https://files.catbox.moe/4aaf10.mp3" type="audio/mpeg">
   </audio>
@@ -153,6 +166,8 @@
   
   <div id="id2" class="hidden">
     <div id="id2header">     
+      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
+      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">            
       <img id="blogwindow" src="images/blog/22325.png">
     </div>
   </div>     
@@ -199,11 +214,13 @@
     const btn = event.target; //checking what was clicked
     const post = btn.parentNode.parentNode; //storing it and the parents
   
-    if (post.style.display === "none"){ //if hidden, unhide
+    setTimeout(function(){
+      if (post.style.display === "none"){ //if hidden, unhide
       post.style.display = "block"; 
-    } else {
+      } else {
       post.style.display = "none"; //hide if not hidden
-    }
+      }
+    }, 125);
   }
 
   function showMenu(id) {
