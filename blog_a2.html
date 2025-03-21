@@ -66,10 +66,11 @@
   #paragraph {
     position: absolute;
     display: none;
-    z-index: 11;
+    z-index: 12;
     top: 28px;
     left: 8px;
     font-family: "Fixedsys Excelsior 3.01";
+    color: black;
   }
 
   #startbutton {
@@ -153,6 +154,8 @@
   
   <div id="id2" class="hidden">
     <div id="id2header">     
+      <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
+      <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">            
       <img id="blogwindow" src="images/blog/22325.png">
     </div>
   </div>     
@@ -199,11 +202,13 @@
     const btn = event.target; //checking what was clicked
     const post = btn.parentNode.parentNode; //storing it and the parents
   
-    if (post.style.display === "none"){ //if hidden, unhide
+    setTimeout(function(){
+      if (post.style.display === "none"){ //if hidden, unhide
       post.style.display = "block"; 
-    } else {
+      } else {
       post.style.display = "none"; //hide if not hidden
-    }
+      }
+    }, 125);
   }
 
   function showMenu(id) {
