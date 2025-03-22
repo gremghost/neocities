@@ -20,19 +20,16 @@
   }
 
   #blogwindow {
-    z-index:11;
   }
   #closebutton {
     position: absolute;
     cursor: pointer;
-    z-index:12;
     top: 6px;
     right: 6px;
   }
   #minbutton {
     position: absolute;
     cursor: pointer;
-    z-index:12;
     top: 6px;
     right: 40px;
   }  
@@ -150,8 +147,8 @@
   
   <!--desktop icons-->
   <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconState('mycomputer', 'images/blog/desktop icons/mycomputer')">  
-  <img class="clickable" id="padico1" src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1')">
-  <img class="clickable" id="padico2" src="images/blog/desktop icons/padico2.png" onclick="createWindow('id2'); iconState('padico2', 'images/blog/desktop icons/padico2')">  
+  <img class="clickable" id="padico1" src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1'); activeInactive('blogwindow', 'images/blog/22025')">
+  <img class="clickable" id="padico2" src="images/blog/desktop icons/padico2.png" onclick="createWindow('id2'); iconState('padico2', 'images/blog/desktop icons/padico2'); activeInactive('blogwindow2', 'images/blog/22325')">  
   <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
 
   <!--windows-->
@@ -160,7 +157,7 @@
       <p id="paragraph">test</p>      
       <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
       <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">      
-      <img id="blogwindow" src="images/blog/22025_notext.png">
+      <img id="blogwindow" src="images/blog/22025.png">
     </div>
   </div>  
   
@@ -168,7 +165,7 @@
     <div id="id2header">     
       <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
       <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">            
-      <img id="blogwindow" src="images/blog/22325.png">
+      <img id="blogwindow2" src="images/blog/22325.png">
     </div>
   </div>     
 
@@ -242,6 +239,26 @@
 
 <!--code for dragging windows-->
 <script>
+  //i took this code from https://www.sitepoint.com/community/t/onclick-bring-element-to-front-but-keep-in-stacking-order/388756/3
+  //not even going to pretend i could figure that out
+function activeInactive(id, src){
+  let window = document.getElementById(id);
+
+  document.querySelectorAll('.hidden').forEach(el => {
+    el.addEventListener('click', () => {
+      resetIndex();
+      el.style.zIndex = "1"
+      window.src = src + ".png";
+    })
+  }) 
+function resetIndex() {
+    document.querySelectorAll('.hidden').forEach(el => {
+    el.style.zIndex = "auto"  
+    window.src = src + "_inactive.png"
+  })} 
+
+}
+
 dragElement(document.getElementById("id1"));
 dragElement(document.getElementById("id2"));
 
@@ -311,35 +328,8 @@ function iconState(id, src) {
     const isClickInside = icon.contains(event.target);
     console.log("icon:" + icon);
     console.log("event target:" + event.target);
-
-    if (!isClickInside) {
-      console.log("idle select")
-      icon.src = src + '_idleselect.png'; //changes to idle select if it's not clicked inside
-    } else {
-      console.log("select")
-      icon.src = src + '_select.png';   //changes to selected if it was clicked inside
-    } 
-    for (let id of iconIds){ //what this SHOULD be doing is only changing to default state IF we're clicked on another icon
-      if (id != event.target.id){
-        console.log("id:" + id);
-        console.log("eti:" + event.target.id);
-        const currentIcon = document.getElementById(id);
-        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
-      }
     }
-  
-    for (let id of iconIds){
-      if (!isClickInside){
-        icon.src = src + '_idleselect.png';
-      } else if (id != iconIds){
-        icon.src = src + '.png';
-      } else {
-        icon.src = src + '_select.png';
-      }
-    }
-
-  })
-}
+)}
 </script>
   </body>
 </html>
