@@ -19,30 +19,18 @@
     cursor: pointer
   }
 
-  #closebutton {
+  .closebutton {
     position: absolute;
     cursor: pointer;
     top: 6px;
     right: 6px;
   }
-  #minbutton {
+  .minbutton {
     position: absolute;
     cursor: pointer;
     top: 6px;
     right: 40px;
   }  
-  #closebutton2{
-    position: absolute;
-    cursor: pointer;
-    top: 6px;
-    right: 6px;
-  }
-  #minbutton2 {
-    position: absolute;
-    cursor: pointer;
-    top: 6px;
-    right: 40px;
-  }    
 
   #id1 {
     position: absolute;
@@ -141,7 +129,6 @@
     z-index: 11;
     top: 975px;
     right: 11px;
-    font-smooth: never;
   } 
   @font-face {
   font-family: "MS Sans Serif 1";
@@ -169,6 +156,7 @@
           --figure out a way to hide / unhide text again with the windows--
           when a window is closed, it shouldn't reopen where it was previously when closed
           make it so if you drag something off screen, it doesn't scroll
+          add gradients using css to indicate active / inactive states for windows
       -->
 
   <audio autoplay>
@@ -187,16 +175,16 @@
       <img id="blogwindow" src="images/blog/22025.png">
     </div>
     <p id="paragraph">test</p>  
-    <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
-    <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">       
+    <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
+    <img class="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">       
   </div>  
   
   <div id="id2" class="hidden">
     <div id="id2header">           
       <img id="blogwindow2" src="images/blog/22325.png">
     </div>
-    <img id="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
-    <img id="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">      
+    <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
+    <img class="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">      
   </div>     
 
 <!--taskbar, start button, and taskbar buttons-->
@@ -213,12 +201,12 @@
 <script>
 
   function closeButtonImageChange() {
-    if (event.target == (document.getElementById("closebutton"))){
-        document.getElementById("closebutton").src = "images/blog/close_click.png";
+    if (event.target == (document.getElementsByClassName("closebutton"))){
+        document.getElementsByClassName("closebutton").src = "images/blog/close_click.png";
         console.log("button was clicked")
   
     setTimeout(function(){
-        document.getElementById("closebutton").src = "images/blog/close.png";
+        document.getElementsByClassName("closebutton").src = "images/blog/close.png";
         console.log("button was reset")
   
       }, 75);
@@ -226,12 +214,12 @@
   }
 
   function minButtonImageChange() {
-    if (event.target == (document.getElementById("minbutton"))){
-        document.getElementById("minbutton").src = "images/blog/minimize_click.png";
+    if (event.target == (document.getElementsByClassName("minbutton"))){
+        document.getElementsByClassName("minbutton").src = "images/blog/minimize_click.png";
         console.log("button 2 was clicked")
   
     setTimeout(function(){
-        document.getElementById("minbutton").src = "images/blog/minimize.png";
+        document.getElementsByClassName("minbutton").src = "images/blog/minimize.png";
         console.log("button 2 was reset")
         
       }, 75);
