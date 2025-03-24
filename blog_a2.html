@@ -60,11 +60,12 @@
 
   #paragraph {
     position: absolute;
-    z-index: 12;
+    z-index: auto;
     top: 28px;
     left: 8px;
     color: black;
-    font-family: 'Fixed Sys'
+    font-family: 'Fixed Sys';
+    -webkit-font-smoothing: none;
   }
 
   #startbutton {
@@ -125,11 +126,15 @@
   #clock {
     position: absolute;
     font-family: "MS Sans Serif 1";
+    -webkit-font-smoothing: none;
     font-size: 11px;
     z-index: 11;
     top: 975px;
-    right: 11px;
+    right: 13px;
   } 
+  .blogwindow {
+    background-image: linear-gradient(to right, #000080, #1084D0)
+  }
   @font-face {
   font-family: "MS Sans Serif 1";
   src: url("fonts/ms-sans-serif-1.ttf") format("truetype");
@@ -156,7 +161,7 @@
           --figure out a way to hide / unhide text again with the windows--
           when a window is closed, it shouldn't reopen where it was previously when closed
           make it so if you drag something off screen, it doesn't scroll
-          add gradients using css to indicate active / inactive states for windows
+          --add gradients using css to indicate active / inactive states for windows--
       -->
 
   <audio autoplay>
@@ -172,7 +177,7 @@
   <!--windows-->
   <div id="id1" class="hidden">
     <div id="id1header">   
-      <img id="blogwindow" src="images/blog/22025.png">
+      <img class="blogwindow" src="images/blog/22025.png">
     </div>
     <p id="paragraph">test</p>  
     <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
@@ -181,7 +186,7 @@
   
   <div id="id2" class="hidden">
     <div id="id2header">           
-      <img id="blogwindow2" src="images/blog/22325.png">
+      <img class="blogwindow" src="images/blog/22325.png">
     </div>
     <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
     <img class="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">      
@@ -253,6 +258,19 @@
     const el = document.getElementById(id); //getting an element by the id
     el.style.display = "block"; //unhiding it
     console.log("window created");
+  }
+
+  document.querySelectorAll('.blogwindow').forEach(el => {
+    el.addEventListener('click', () => {
+      inactive();
+      el.style.backgroundImage = "linear-gradient(to right, #000080, #1084D0)";
+    })
+  }) 
+
+  function inactive() {
+    document.querySelectorAll('.blogwindow').forEach(el =>{
+      el.style.backgroundImage = "linear-gradient(to right, #808080, #BEBEBE)"
+    })
   }
 </script>
 
