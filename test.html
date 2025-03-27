@@ -8,24 +8,59 @@
          If you include the next line in all your web pages, they will all share the same look.
          This makes it easier to make new pages for your site. -->
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+    .closebutton {
+      position: absolute;
+      cursor: pointer;
+      top: 6px;
+      right: 6px;
+    }
+    .minbutton {
+      position: absolute;
+      cursor: pointer;
+      top: 6px;
+      right: 40px;
+    }  
+    #test {
+      padding: 0px;
+      margin: 0px;
+    }
+    .header {
+      padding: 0px;
+      margin: 0px;
+      background-image: linear-gradient(to right, #000080, #1084D0)
+      
+    }
+    </style>
     </head>
     <body>
     
-    <img src="images/blog/22025_notext.png" id="image">
-    <img src="images/blog/22325.png" id="image2">              
+  <div>
+    <img id="test" src="images/blog/font/N_b.png">
+    <img id="test" src="images/blog/font/o_b.png">
+    <img id="test" src="images/blog/font/t_b.png">
+    <img id="test" src="images/blog/font/e_b.png">
+    <img id="test" src="images/blog/font/p_b.png">
+    <img id="test" src="images/blog/font/a_b.png">
+    <img id="test" src="images/blog/font/d_b.png">
+  </div>
 
-    <script>
-    function testFunction(event) {
-        const button = e.target;
-        const post = button.parentNode;
-    // what i need this to do is figure out which window is being clicked (in some form)
-    // and then hide or unhide that window but NOT the others
-        
-    } 
+  <div>
+    <div class="window">   
+      <div class="header" style="height: 22px; width: 601px">
+        <img src="images/blog/window_header.png">
+        <img class="minbutton" src ="images/blog/minimize.png">
+        <img class="closebutton" src ="images/blog/close.png">
+      </div>
 
-    img.indexOf(element + "_click")
-    </script>
+    <div class="body">
+      <img src="images/blog/window.png">
+    </div>       
 
+  </div>
+
+    <script src="windows.js"></script>
 
     </body>
 </html>
