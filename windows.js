@@ -8,7 +8,6 @@ windows.forEach(window => {
         z = z + 1;
         window.style.zIndex = z;
     })
-})
 
 header.addEventListener('mousedown', (event) => {
      //dragging code
@@ -30,4 +29,5 @@ header.addEventListener('mousedown', (event) => {
 
      document.addEventListener('mousemove', drag)
      document.addEventListener('mouseup', mouseup)
+    })
 })

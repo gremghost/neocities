@@ -133,7 +133,9 @@
     right: 13px;
   } 
   .blogwindow {
-    background-image: linear-gradient(to right, #000080, #1084D0)
+    background-image: linear-gradient(to right, #000080, #1084D0);
+    margin: 0px;
+    padding: 0px;
   }
   @font-face {
   font-family: "MS Sans Serif 1";
@@ -177,15 +179,16 @@
   <!--windows-->
   <div id="id1" class="hidden">
     <div id="id1header">   
-      <img class="blogwindow" src="images/blog/22025.png">
+      <img class="blogwindow" src="images/blog/window_header.png">
     </div>
     <p id="paragraph">test</p>  
     <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
-    <img class="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">       
+    <img class="closebutton" src="images/blog/close.png" onclick="closeButtonImageChange(); hideWindow(event)">     
+    <img src="images/blog/window.png">  
   </div>  
   
   <div id="id2" class="hidden">
-    <div id="id2header">           
+    <div id="id2header" style="height: 22px; width: 601px">           
       <img class="blogwindow" src="images/blog/22325.png">
     </div>
     <img class="minbutton" src="images/blog/minimize.png" onclick="minButtonImageChange(); hideWindow(event)">        
@@ -299,9 +302,6 @@ function dragElement(elmnt) {
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
   }
 
 function dragMouseDown(e) {

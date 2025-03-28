@@ -10,23 +10,28 @@
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
 
     <style>
-    .closebutton {
+    #closebutton {
       position: absolute;
       cursor: pointer;
       top: 6px;
       right: 6px;
     }
-    .minbutton {
+    #minbutton {
       position: absolute;
       cursor: pointer;
       top: 6px;
       right: 40px;
     }  
-    #test {
-      padding: 0px;
-      margin: 0px;
+    .test {
+      padding: -1.5px;
+      margin: -1.5px;
+    }
+    .test2 {
+      padding: -1px;
+      margin: -1px;
     }
     .header {
+      cursor: move;
       padding: 0px;
       margin: 0px;
       background-image: linear-gradient(to right, #000080, #1084D0)
@@ -35,23 +40,31 @@
     </style>
     </head>
     <body>
-    
-  <div>
-    <img id="test" src="images/blog/font/N_b.png">
-    <img id="test" src="images/blog/font/o_b.png">
-    <img id="test" src="images/blog/font/t_b.png">
-    <img id="test" src="images/blog/font/e_b.png">
-    <img id="test" src="images/blog/font/p_b.png">
-    <img id="test" src="images/blog/font/a_b.png">
-    <img id="test" src="images/blog/font/d_b.png">
-  </div>
 
-  <div>
     <div class="window">   
       <div class="header" style="height: 22px; width: 601px">
+        <img id="minbutton" src ="images/blog/minimize.png">
+        <img id="closebutton" src ="images/blog/close.png">
+
+        <img class="test" style="color: inverted;" src="images/blog/font/2_b.png">
+        <img class="test" src="images/blog/font/slash_b.png">
+        <img class="test" src="images/blog/font/2_b.png">  
+        <img class="test" src="images/blog/font/0_b.png"> 
+        <img class="test" src="images/blog/font/slash_b.png">       
+        <img class="test" src="images/blog/font/2_b.png">  
+        <img class="test" src="images/blog/font/5_b.png">   
+        
+        <img class="test" src="images/blog/font/dash_b.png">      
+    
+        <img class="test2" src="images/blog/font/N_b.png">
+        <img class="test" src="images/blog/font/o_b.png">
+        <img class="test" src="images/blog/font/t_b.png">
+        <img class="test" src="images/blog/font/e_b.png">
+        <img class="test" src="images/blog/font/p_b.png">
+        <img class="test" src="images/blog/font/a_b.png">
+        <img class="test" src="images/blog/font/d_b.png">
+
         <img src="images/blog/window_header.png">
-        <img class="minbutton" src ="images/blog/minimize.png">
-        <img class="closebutton" src ="images/blog/close.png">
       </div>
 
     <div class="body">
@@ -60,7 +73,6 @@
 
   </div>
 
-    <script src="windows.js"></script>
-
+  <script src="windows.js"></script>
     </body>
 </html>
