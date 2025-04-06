@@ -47,13 +47,14 @@
   }  
 
   #id1header {
-    cursor: move
+    cursor: move;
     padding: 0px;
     z-index: 10;
+    height: 22px;
   }
  
   #id2header {
-    cursor: move
+    cursor: move;
     padding: 0px;
     z-index: 10;
   }  
@@ -301,8 +302,20 @@ function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = stacking;
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } 
+
+stacking(document.getElementById("id1"));
+stacking(document.getElementById("id2"));
+
+function stacking(e){
+  if (e.style.zIndex = 0){
+    e.style.zIndex = 1;
+  } else {
+    e.style.zIndex = 0;
   }
+}
 
 function dragMouseDown(e) {
   e = e || window.event;

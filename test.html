@@ -33,20 +33,37 @@
     .header {
       cursor: move;
       padding: 0px;
-      margin: 0px;
-      background-image: linear-gradient(to right, #000080, #1084D0)
+      margin: 0px;     
+      display: grid; 
+      position: absolute;
       
+    }
+    #header {
+      background-image: linear-gradient(to right, #000080, #1084D0);
+    }
+    .parent{
+      cursor: pointer;
+    }
+    .child{
+      transition-duration: 1s;
+    }
+
+    .parent:hover .child {
+      transform: translateY(100%);
+    }
+    #id2 {
+      display: none;
     }
     </style>
     </head>
     <body>
 
     <div class="window">   
-      <div class="header" style="height: 22px; width: 601px">
+      <div class="header" id="header" style="height: 22px; width: 601px">
         <img id="minbutton" src ="images/blog/minimize.png">
         <img id="closebutton" src ="images/blog/close.png">
 
-        <img class="test" style="color: inverted;" src="images/blog/font/2_b.png">
+        <img class="test" src="images/blog/font/2_b.png">
         <img class="test" src="images/blog/font/slash_b.png">
         <img class="test" src="images/blog/font/2_b.png">  
         <img class="test" src="images/blog/font/0_b.png"> 
@@ -64,7 +81,7 @@
         <img class="test" src="images/blog/font/a_b.png">
         <img class="test" src="images/blog/font/d_b.png">
 
-        <img src="images/blog/window_header.png">
+        <img id="header" src="images/blog/window_header.png">
       </div>
 
     <div class="body">
@@ -73,6 +90,38 @@
 
   </div>
 
-  <script src="windows.js"></script>
+  <div class="parent">
+    <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton'), showMenu('id2')">
+    <div class="child">
+      <img id="id2" src="images/blog/taskbar/startmenu.jpg">
+    </div>
+
+  </div>
+
+  <script>
+    function changeImage(id, src) {
+      let button = document.getElementById(id);
+      console.log("button.src = " + button.src);
+      console.log("src = " + src + '.png');    
+      if(button.src.includes('_click')){
+        button.src = src + '.png';
+        console.log("no click");
+      } else {
+        button.src = src + '_click.png';
+        console.log("yes click")
+    }
+  }
+  
+  function showMenu(id) {
+    const el2 = document.getElementById(id); //getting an element by the id  
+   
+    if (el2.style.display === "block"){
+      el2.style.display = "none"; 
+    } else {
+      el2.style.display = "block";
+    }
+  }  
+
+  </script>
     </body>
 </html>
