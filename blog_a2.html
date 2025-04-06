@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The web site of gremghost</title>
+    <title>Windows 98</title>
     <!-- The style.css file allows you to change the look of your web pages.
          If you include the next line in all your web pages, they will all share the same look.
          This makes it easier to make new pages for your site. -->
@@ -152,7 +152,7 @@
 
   <!--list of things that needs to be added for this page to be complete-->
       <!--
-          windows need to be able to go inactive should you be clicking on another window
+          --windows need to be able to go inactive should you be clicking on another window--
           taskbar icons for each window + them moving accordingly based on which one was open first
           windows need to be able to move on top or below each window based on which was clicked
           animations for all popout menus / window minimize - maximize
@@ -165,6 +165,7 @@
           when a window is closed, it shouldn't reopen where it was previously when closed
           make it so if you drag something off screen, it doesn't scroll
           --add gradients using css to indicate active / inactive states for windows--
+          --win98 boot sequence--
       -->
 
   <audio autoplay>
@@ -309,11 +310,11 @@ function dragElement(elmnt) {
 stacking(document.getElementById("id1"));
 stacking(document.getElementById("id2"));
 
-function stacking(e){
-  if (e.style.zIndex = 0){
-    e.style.zIndex = 1;
+function stacking(elmnt){
+  if (elmnt.style.zIndex = 0){
+    elmnt.style.zIndex = 1;
   } else {
-    e.style.zIndex = 0;
+    elmnt.style.zIndex = 0;
   }
 }
 

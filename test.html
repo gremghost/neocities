@@ -10,13 +10,13 @@
         <link href="/style.css" rel="stylesheet" type="text/css" media="all">
 
     <style>
-    #closebutton {
+    .closebutton {
       position: absolute;
       cursor: pointer;
       top: 6px;
       right: 6px;
     }
-    #minbutton {
+    .minbutton {
       position: absolute;
       cursor: pointer;
       top: 6px;
@@ -60,8 +60,8 @@
 
     <div class="window">   
       <div class="header" id="header" style="height: 22px; width: 601px">
-        <img id="minbutton" src ="images/blog/minimize.png">
-        <img id="closebutton" src ="images/blog/close.png">
+        <img class="minbutton" id="button1" src ="images/blog/minimize.png" onclick="closeButtonChange">
+        <img class="closebutton" id="button2" src ="images/blog/close.png">
 
         <img class="test" src="images/blog/font/2_b.png">
         <img class="test" src="images/blog/font/slash_b.png">
@@ -121,6 +121,10 @@
       el2.style.display = "block";
     }
   }  
+
+  const elmnt = document.querySelectorAll("closebutton");
+
+  
 
   </script>
     </body>
