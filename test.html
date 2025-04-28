@@ -4,98 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The web site of gremghost</title>
-    <!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
-        <link href="/style.css" rel="stylesheet" type="text/css" media="all">
-
-    <style>
-    .closebutton {
-      position: absolute;
-      cursor: pointer;
-      top: 6px;
-      right: 6px;
-    }
-    .minbutton {
-      position: absolute;
-      cursor: pointer;
-      top: 6px;
-      right: 40px;
-    }  
-    .test {
-      padding: -1.5px;
-      margin: -1.5px;
-    }
-    .test2 {
-      padding: -1px;
-      margin: -1px;
-    }
-    .header {
-      cursor: move;
-      padding: 0px;
-      margin: 0px;     
-      display: grid; 
-      position: absolute;
-      
-    }
-    #header {
-      background-image: linear-gradient(to right, #000080, #1084D0);
-    }
-    .parent{
-      cursor: pointer;
-    }
-    .child{
-      transition-duration: 1s;
-    }
-
-    .parent:hover .child {
-      transform: translateY(100%);
-    }
-    #id2 {
-      display: none;
-    }
-    </style>
+        <link href="stylesheet.css" rel="stylesheet" type="text/css" media="all">
     </head>
     <body>
-
-    <div class="window">   
-      <div class="header" id="header" style="height: 22px; width: 601px">
-        <img class="minbutton" id="button1" src ="images/blog/minimize.png" onclick="closeButtonChange">
-        <img class="closebutton" id="button2" src ="images/blog/close.png">
-
-        <img class="test" src="images/blog/font/2_b.png">
-        <img class="test" src="images/blog/font/slash_b.png">
-        <img class="test" src="images/blog/font/2_b.png">  
-        <img class="test" src="images/blog/font/0_b.png"> 
-        <img class="test" src="images/blog/font/slash_b.png">       
-        <img class="test" src="images/blog/font/2_b.png">  
-        <img class="test" src="images/blog/font/5_b.png">   
-        
-        <img class="test" src="images/blog/font/dash_b.png">      
     
-        <img class="test2" src="images/blog/font/N_b.png">
-        <img class="test" src="images/blog/font/o_b.png">
-        <img class="test" src="images/blog/font/t_b.png">
-        <img class="test" src="images/blog/font/e_b.png">
-        <img class="test" src="images/blog/font/p_b.png">
-        <img class="test" src="images/blog/font/a_b.png">
-        <img class="test" src="images/blog/font/d_b.png">
-
-        <img id="header" src="images/blog/window_header.png">
-      </div>
-
-    <div class="body">
-      <img src="images/blog/window.png">
-    </div>       
-
-  </div>
-
+  <!--taskbar and its children (start button, program buttons, etc)-->
   <div class="parent">
     <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton'), showMenu('id2')">
     <div class="child">
       <img id="id2" src="images/blog/taskbar/startmenu.jpg">
     </div>
 
+  </div>
+
+  <div>
+    <img id="taskbarF" src="images/blog/taskbar/taskbar_front.png">
+    <img id="taskbarM" src="images/blog/taskbar/taskbar_middle.png">
+    <img id="taskbarB" src="images/blog/taskbar/taskbar_back.png">
+  </div>
+  
+  <!--desktop icons-->
+  <div class="desktop with-clicking">
+    <div data-item='one' data-status='default' class="item">
+      <img class="icon" src="images/blog/desktop icons/mycomputer.png">
+    </div>
+    <div data-item='two' data-status='default' class="item">
+      <img class="icon" src="images/blog/desktop icons/mycomputer.png">
+    </div>  
   </div>
 
   <script>
@@ -122,10 +57,39 @@
     }
   }  
 
-  const elmnt = document.querySelectorAll("closebutton");
+  const context = document.querySelector(".with-clicking");
 
-  
+  let selectedItem = null;
 
+  function handleSelectItem(clickedItem) {
+    if (selectedItem && selectedItem !== clickedItem){
+      selectedItem.dataset.status = "default";
+      console.log("default");
+    }
+    clickedItem.dataset.status = "selected";
+    console.log("selected");
+    clickedItem.focus();
+    selectedItem = clickedItem;
+  }
+
+  function handleLeaveItem(){
+    const allItems = context.querySelectorAll("[data-item]");
+    allItems.forEach( (item)=>{
+      item.dataset.status = "default";
+      console.log("default");      
+    });
+
+    if(selectedItem){
+      selectedItem.dataset.status = "idle";
+      console.log("idle");      
+    }
+  }
+
+  context.addEventListener("dblclick", function(event){
+    if (event.target.matches("[data-item]")){
+      alert(`double clicked ${event.target.dataset.item}`);
+    }
+  })
   </script>
     </body>
 </html>

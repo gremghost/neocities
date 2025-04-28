@@ -7,145 +7,10 @@
     <!-- The style.css file allows you to change the look of your web pages.
          If you include the next line in all your web pages, they will all share the same look.
          This makes it easier to make new pages for your site. -->
-        <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+        <link href="stylesheet.css" rel="stylesheet" type="text/css" media="all">
   <style>
 
-  .hidden {
-    display: none;
-  }
-
-
-  .clickable {
-    cursor: pointer
-  }
-
-  .closebutton {
-    position: absolute;
-    cursor: pointer;
-    top: 6px;
-    right: 6px;
-  }
-  .minbutton {
-    position: absolute;
-    cursor: pointer;
-    top: 6px;
-    right: 40px;
-  }  
-
-  #id1 {
-    position: absolute;
-    z-index: 9;
-  }
-
-  #id2 {
-    position: absolute;
-    z-index: 9;
-  }
-
-  #id3 {
-    display: none;
-  }  
-
-  #id1header {
-    cursor: move;
-    padding: 0px;
-    z-index: 10;
-    height: 22px;
-  }
- 
-  #id2header {
-    cursor: move;
-    padding: 0px;
-    z-index: 10;
-  }  
-
-  #paragraph {
-    position: absolute;
-    z-index: auto;
-    top: 28px;
-    left: 8px;
-    color: black;
-    font-family: 'Fixed Sys';
-    -webkit-font-smoothing: none;
-  }
-
-  #startbutton {
-    cursor: pointer;
-    position: absolute;
-    bottom:2px;
-    left:2px;
-    z-index:1;
-  }
-
-  #taskbar {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-  }
-
-  #neocities {
-    cursor: pointer;       
-    position: absolute;
-    bottom: 23px;
-    left: 26px;
-    z-index: 4;
-  }
-
-  #startmenu { 
-    position: absolute;
-    bottom: 20px;
-    left: 2px;
-    z-index: 3;
-  }
-
-  #desktop { 
-    position: absolute;
-    z-index: -1;
-    top: 0px;
-    left: 0px;
-  }
-
-  #mycomputer {
-    cursor: pointer;
-    position: absolute;
-    top: 2px;
-    left:4px;
-    z-index:0;
-  }
   
-  #padico1 {
-    position: absolute;
-    top: 677px;
-    left: 20px;
-  }
-
-  #padico2 {
-    position: absolute;
-    top: 754px;
-    left: 20px;
-  } 
-  #clock {
-    position: absolute;
-    font-family: "MS Sans Serif 1";
-    -webkit-font-smoothing: none;
-    font-size: 11px;
-    z-index: 11;
-    top: 975px;
-    right: 13px;
-  } 
-  .blogwindow {
-    background-image: linear-gradient(to right, #000080, #1084D0);
-    margin: 0px;
-    padding: 0px;
-  }
-  @font-face {
-  font-family: "MS Sans Serif 1";
-  src: url("fonts/ms-sans-serif-1.ttf") format("truetype");
-  }
-  @font-face {
-  font-family: "Fixed Sys";
-  src: url("fonts/FSEX300.ttf") format("truetype");
-  }  
   </style>
   </head>
   <body style="background-color: #008080;" onload="showTime()">
@@ -166,6 +31,7 @@
           make it so if you drag something off screen, it doesn't scroll
           --add gradients using css to indicate active / inactive states for windows--
           --win98 boot sequence--
+          win98 boot sequence animations
       -->
 
   <audio autoplay>
@@ -372,14 +238,28 @@ function iconState(id, src) {
 
     document.addEventListener('click', event => {
     const isClickInside = icon.contains(event.target);
+    console.log(icon);
+    console.log(event.target);
 
     if (!isClickInside) {
+      console.log("idle select")
       icon.src = src + '_idleselect.png';
     } else {
+      console.log("select")
       icon.src = src + '_select.png';
     }
-  }
-)}
+
+    for (let id of iconIds){
+      if (id != event.target.id){
+        console.log("id:" + id);
+        console.log("eti:" + event.target.id);
+      const currentIcon = document.getElementById(id);
+        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
+      }
+    } 
+    
+  })
+}
 </script>
 
 <!--code from https://www.geeksforgeeks.org/how-to-design-digital-clock-using-javascript/-->

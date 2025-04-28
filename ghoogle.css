@@ -1,0 +1,19 @@
+.logo {
+    position: fixed;
+    left: 36vw;
+    top: 10vh;
+    max-width: 30vw;
+    max-height: 15vh;
+}
+
+.div1 {
+    background: yellow;
+}
+
+#para {
+    position: fixed;
+    left: 43vw;
+    top: 24vh;
+    font-size: 16px;
+    font-family: Verdana;
+}
