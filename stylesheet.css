@@ -1,6 +1,27 @@
-  
-  .hidden {
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(26, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  } 
+  .div1 {grid-area: 1 / 1 / 2 / 2;}
+  .div2 {grid-area: 2 / 1 / 3 / 2;}  
+  .div3 {grid-area: 3 / 1 / 3 / 2;}
+  .div4 {grid-area: 4 / 1 / 4 / 2;}       
+
+  #internet {
+    position: relative;
+    left: 14px;
+  }
+ 
+ .hidden {
     display: none;
+  }
+
+  .card{
+    cursor: pointer;
+    position: fixed;
   }
 
 
@@ -121,7 +142,7 @@
     -webkit-font-smoothing: none;
     font-size: 11px;
     z-index: 11;
-    top: 975px;
+    bottom: 7px;
     right: 13px;
   } 
 
@@ -145,22 +166,25 @@
   /* taskbar ids */
   #taskbarF{
     position: absolute;
-    bottom: 0vh;
-    left: 0vh;
-  }
-
-  #taskbarM{
-    position: absolute;
-    display: inline-block;
-    bottom: 0vh;
-    left: 6.5vh;
-    background-repeat: repeat-x;
+    bottom: 0vw;
+    left: 0vw;
   }
 
   #taskbarB{
     position: absolute;
-    bottom: 0vh;
-    right: 0vh;
+    bottom: 0vw;
+    right: 0vw;
+  }
+
+  .taskbar{
+    position: absolute;
+    bottom: 0vw;
+    left: 0vw;
+    margin: 0px;
+    width: 100vw;
+    height: 28px;
+    background-image: url("/images/blog/taskbar/taskbar_middle.png");
+    background-repeat: repeat-x;
   }
 
   .icon{
@@ -171,47 +195,28 @@
     display: none;
   }
 
-  .item {
-    max-width: 44px;
-    display: grid;
-    max-width: 80px;
-    gap: 4px;
-    text-align: center;
-    padding: 4px;
-    border: 1px solid gray;
-    cursor: pointer;
-    * {
-      pointer-events: none;
-      /* ensure the little details aren't selected */
-    }
-    .icon {
-      max-width: 54px;
-      justify-self: center;
-    }
-    svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    
-    &.default {
-      
-    }
-    
-    &[data-status="selected"] {
-      background-color: lime;
-      /* just for the example */
-      
-      /* *** Swap out the background image with a sprite vs a img src */
-    }
-    
-    &:focus {
-      /* color: green; */
-      /* you probably want to sync this up too */
-      /* for keyboard navigation */
-    }
-    
-    &[data-status="idle"] {
-      background-color: wheat;	
-    }
+  .window {
+    background-color: silver;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px,2px #fff;
+    padding: 3px;
+    height: 400px;
+    width: 400px;
+  }
+
+  .title {
+    background-image: linear-gradient(90deg, navy, #1084D0);
+    height: 25px;
+    width: 400px;
+  }
+
+  .menu {
+    background-color: yellow;
+    height: 25px;
+    width: 400px;
+  }
+  
+  .contents {
+    background-color: white;
+    height: 335px; 
+    width: 385px;
   }

@@ -17,21 +17,26 @@
 
   </div>
 
-  <div>
+  <div class="window">
+    <div class="title"></div>
+    <div class="menu"></div>
+    <div class="contents"></div>
+  </div>
+
+  <div id="container">
+    <div class="card"><img src="images\blog\22025.png"></div>
+  </div>
+
+  <div class="taskbar">
     <img id="taskbarF" src="images/blog/taskbar/taskbar_front.png">
-    <img id="taskbarM" src="images/blog/taskbar/taskbar_middle.png">
     <img id="taskbarB" src="images/blog/taskbar/taskbar_back.png">
   </div>
   
-  <!--desktop icons-->
-  <div class="desktop with-clicking">
-    <div data-item='one' data-status='default' class="item">
-      <img class="icon" src="images/blog/desktop icons/mycomputer.png">
-    </div>
-    <div data-item='two' data-status='default' class="item">
-      <img class="icon" src="images/blog/desktop icons/mycomputer.png">
-    </div>  
+  <div class="desktop">
+    <img class="icon" src="images/blog/desktop icons/mycomputer.png" onclick="handleSelectedIcon('mycomputer', 'images/blog/desktop icons/mycomputer')">
   </div>
+
+  <script type="text/javascript" src="images\windows.js"></script>
 
   <script>
     function changeImage(id, src) {
@@ -57,39 +62,30 @@
     }
   }  
 
-  const context = document.querySelector(".with-clicking");
+  //two functions - one for selecting icons, one for leaving icons
+  //the first function should handle the default state vs selected state
+  //the second function should handle the idle select state vs default
+  const icons = [""]
+  let selectedIcon = null;
+  let clickedIcon = null;
 
-  let selectedItem = null;
+  function handleSelectedIcon(id, src) {
+    selectedIcon = id;
 
-  function handleSelectItem(clickedItem) {
-    if (selectedItem && selectedItem !== clickedItem){
-      selectedItem.dataset.status = "default";
-      console.log("default");
+    if (selectedIcon !== clickedIcon) {
+      selectedIcon.src = src + ".png"
+      console.log(selectedIcon.src)
     }
-    clickedItem.dataset.status = "selected";
-    console.log("selected");
-    clickedItem.focus();
-    selectedItem = clickedItem;
+
+    clickedIcon = selectedIcon;
+    clickedIcon.src = src + "_select.png"
+    console.log(clickedIcon.src)
   }
 
-  function handleLeaveItem(){
-    const allItems = context.querySelectorAll("[data-item]");
-    allItems.forEach( (item)=>{
-      item.dataset.status = "default";
-      console.log("default");      
-    });
+  function handleLeaveIcon() {
 
-    if(selectedItem){
-      selectedItem.dataset.status = "idle";
-      console.log("idle");      
-    }
   }
 
-  context.addEventListener("dblclick", function(event){
-    if (event.target.matches("[data-item]")){
-      alert(`double clicked ${event.target.dataset.item}`);
-    }
-  })
   </script>
     </body>
 </html>

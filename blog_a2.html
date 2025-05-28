@@ -17,21 +17,26 @@
 
   <!--list of things that needs to be added for this page to be complete-->
       <!--
+          FUNCTIONALITY
           --windows need to be able to go inactive should you be clicking on another window--
           taskbar icons for each window + them moving accordingly based on which one was open first
           windows need to be able to move on top or below each window based on which was clicked
-          animations for all popout menus / window minimize - maximize
           selected icons and all that jazz working properly instead of how it is rn
           --figure out a way for the min - max buttons to be placed w/o having to create new ids (hopefully)--
           figure out how to have the animations work on all buttons and not just the first window
           custom cursor based on win98
           --make the clock functional--
           --figure out a way to hide / unhide text again with the windows--
+          --taskbar adjusts based on screen res--
           when a window is closed, it shouldn't reopen where it was previously when closed
-          make it so if you drag something off screen, it doesn't scroll
+          --make it so if you drag something off screen, it doesn't scroll--
+          new bug: windows should not ever be above the taskbar
+
+          STYLE / CSS
           --add gradients using css to indicate active / inactive states for windows--
           --win98 boot sequence--
           win98 boot sequence animations
+          animations for all popout menus / window minimize - maximize          
       -->
 
   <audio autoplay>
@@ -39,10 +44,8 @@
   </audio>
   
   <!--desktop icons-->
-  <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconState('mycomputer', 'images/blog/desktop icons/mycomputer')">  
-  <img class="clickable" id="padico1" src="images/blog/desktop icons/padico1.png" onclick="createWindow('id1'); iconState('padico1', 'images/blog/desktop icons/padico1');">
-  <img class="clickable" id="padico2" src="images/blog/desktop icons/padico2.png" onclick="createWindow('id2'); iconState('padico2', 'images/blog/desktop icons/padico2');">  
-  <img id="desktop" src="images/blog/desktop icons/desktopicons.png">
+  <img id="mycomputer" src="images/blog/desktop icons/mycomputer.png" onclick="iconClicked('mycomputer', 'images/blog/desktop icons/mycomputer')">  
+  <img id="mydocument" src="images/blog/desktop icons/mydocuments.png">
 
   <!--windows-->
   <div id="id1" class="hidden">
@@ -71,7 +74,10 @@
 
   <img id="startbutton" src="images/blog/taskbar/startbutton.png" onclick="changeImage('startbutton', 'images/blog/taskbar/startbutton'); showMenu('id3')">
   <div id="clock"></div>
-  <img id="taskbar" src="images/blog/taskbar/taskbar.png">
+    <div class="taskbar">
+    <img id="taskbarF" src="images/blog/taskbar/taskbar_front.png">
+    <img id="taskbarB" src="images/blog/taskbar/taskbar_back.png">
+  </div>
 
 <!--code for revealing / hiding windows & buttons-->
 <script>
@@ -230,36 +236,27 @@ function closeDragElement() {
   }
 }
 
-//basic setup for function, needs to be changed to
-// "if clicked inside - do this (done), if clicked outside - do this (done), if clicked on something else - do this"
-function iconState(id, src) {
-    let icon = document.getElementById(id);
-    let iconIds = ["mycomputer", "padico1", "padico2"];
+  //two functions - one for selecting icons, one for leaving icons
+  //the first function should handle the default state vs selected state
+  //the second function should handle the idle select state vs default
 
-    document.addEventListener('click', event => {
-    const isClickInside = icon.contains(event.target);
-    console.log(icon);
-    console.log(event.target);
+  let iconSrc;
+  let icon;
+  let clickedIcon;
 
-    if (!isClickInside) {
-      console.log("idle select")
-      icon.src = src + '_idleselect.png';
-    } else {
-      console.log("select")
-      icon.src = src + '_select.png';
-    }
+  function iconClicked(id, src) {
+      clickedIcon = document.getElementById(id);
+      console.log("icon:" + icon);
+      console.log("clicked icon:" + clickedIcon);
+      let iconIds = ["mycomputer", "padico1", "padico2"]
 
-    for (let id of iconIds){
-      if (id != event.target.id){
-        console.log("id:" + id);
-        console.log("eti:" + event.target.id);
-      const currentIcon = document.getElementById(id);
-        currentIcon.src = 'images/blog/desktop icons/' + id + '.png';
+      if (clickedIcon !== icon) {
+        clickedIcon.src = src + '.png'
+      } else {
+        clickedIcon.src = src + '_select.png'
       }
-    } 
-    
-  })
-}
+      icon = clickedIcon;
+  }
 </script>
 
 <!--code from https://www.geeksforgeeks.org/how-to-design-digital-clock-using-javascript/-->

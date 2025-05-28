@@ -1,7 +1,6 @@
 .logo {
-    position: fixed;
-    left: 36vw;
-    top: 10vh;
+    position: relative;
+    top: 8vh;
     max-width: 30vw;
     max-height: 15vh;
 }
@@ -10,10 +9,39 @@
     background: yellow;
 }
 
-#para {
-    position: fixed;
-    left: 43vw;
-    top: 24vh;
-    font-size: 16px;
-    font-family: Verdana;
+.search {
+    position: relative;
+    top: 2vh;
+}
+
+#searchbar {
+    position: relative;
+    top: 2vh;
+    width: 40vh;
+}
+
+.searchbar {
+    position: relative;
+    top: 8vh;
+    height: 5vw;
+    width: 35vw;
+    background-color: #e6e6e6e8;
+}
+
+#button1 {
+    position: relative;
+    top: 5.2vh;
+    width: 125px;
+}
+
+#button2 {
+    position: relative;
+    top: 5.2vh;
+    width: 135px;
+}
+
+#copyright {
+    position: relative;
+    top: 8vh;
+    font-size: 13px;
 }
